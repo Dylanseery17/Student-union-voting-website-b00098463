@@ -3,15 +3,31 @@
 {% block title %}Hello DefaultController!{% endblock %}
 
 {% block body %}
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-3">Fluid jumbo heading</h1>
-            <p class="lead">Jumbo helper text</p>
-            <hr class="my-2">
-            <p>More info</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Jumbo action name</a>
-            </p>
+    <div id="jumbo" class="jumbotron jumbotron-fluid" style="height:100vh; overflow: hidden;">
+        <div class="container-fluid">
+                <div class="row" style="margin-top: -65px;">
+                    <div class="col-md-7" style="height:100vh; background-image: url('Images/Default/Jumbo_index.png'); background-size: cover;">
+                        <div class="row">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-10 text-center" style="padding: 20px;">
+                                <br><br><br><br>
+                                <img src="Images/Default/TUD_WHITE.png" class="img-fluid rounded-top" alt="" style="height:125px;">
+                                <br> <br> <br>
+                                <h2 class="text-center" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h2>
+                                <br> <br>
+                                <a name="" id="" class="btn btn-primary btn-lg"" href="#" role="button">Start Voting</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 text-center" style="height:100vh; background-image: url('Images/Default/Jumbo_index_white.png'); background-size: cover;">
+                        <div style="height: 40vh;"></div>
+                        <blockquote class="blockquote">
+                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
         </div>
     </div>
 
@@ -23,132 +39,92 @@
 
         <div class="row">
             <div class="col-md-3">
-                <div class="card" style="background-color:cadetblue; border-color:darkblue;">
-                    <img class="card-img-top" src="holder.js/100x180/" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
+                <div class="card">
+                    <div class="card-header">
+                        Presidential Election
                     </div>
+                    <img class="card-img-top" src="https://www.adamhamilton.com/images/r/blog_faith-and-the-presidential-election/c960x540g0-0-580-325/blog_faith-and-the-presidential-election.jpg"  style="filter: blur(2px);-webkit-filter: blur(2px);" alt="Card image cap">
+                    <div class="card-body"> <p id="timer4" class="timer"></p> </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card" style="background-color:cadetblue; border-color:darkblue;">
-                    <img class="card-img-top" src="holder.js/100x180/" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
+                    <div class="card">
+                        <div class="card-header">
+                            Presidential Election
+                        </div>
+                        <img class="card-img-top" src="https://www.adamhamilton.com/images/r/blog_faith-and-the-presidential-election/c960x540g0-0-580-325/blog_faith-and-the-presidential-election.jpg"  style="filter: blur(2px);-webkit-filter: blur(2px);" alt="Card image cap">
+                        <div class="card-body"> <p id="timer1" class="timer"></p> </div>
                     </div>
+                </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        Presidential Election
+                    </div>
+                    <img class="card-img-top" src="https://www.adamhamilton.com/images/r/blog_faith-and-the-presidential-election/c960x540g0-0-580-325/blog_faith-and-the-presidential-election.jpg"  style="filter: blur(2px);-webkit-filter: blur(2px);" alt="Card image cap">
+                    <div class="card-body"> <p id="timer2" class="timer"></p> </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card" style="background-color:cadetblue; border-color:darkblue;">
-                    <img class="card-img-top" src="holder.js/100x180/" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
+                <div class="card">
+                    <div class="card-header">
+                        Presidential Election
                     </div>
+                    <img class="card-img-top" src="https://www.adamhamilton.com/images/r/blog_faith-and-the-presidential-election/c960x540g0-0-580-325/blog_faith-and-the-presidential-election.jpg"  style="filter: blur(2px);-webkit-filter: blur(2px);" alt="Card image cap">
+                    <div class="card-body"> <p id="timer3" class="timer"></p> </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card" style="background-color:cadetblue; border-color:darkblue;">
-                    <img class="card-img-top" src="holder.js/100x180/" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br>
-
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">Most Popular</li>
-        </ol>
-
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card" style="background-color:cadetblue; border-color:darkblue;">
-                    <img class="card-img-top" src="holder.js/100x180/" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="background-color:cadetblue; border-color:darkblue;">
-                    <img class="card-img-top" src="holder.js/100x180/" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="background-color:cadetblue; border-color:darkblue;">
-                    <img class="card-img-top" src="holder.js/100x180/" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="background-color:cadetblue; border-color:darkblue;">
-                    <img class="card-img-top" src="holder.js/100x180/" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br>
-
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">Most Recent</li>
-        </ol>
-
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card" style="background-color:cadetblue; border-color:darkblue;">
-                    <img class="card-img-top" src="holder.js/100x180/" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="background-color:cadetblue; border-color:darkblue;">
-                    <img class="card-img-top" src="holder.js/100x180/" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="background-color:cadetblue; border-color:darkblue;">
-                    <img class="card-img-top" src="holder.js/100x180/" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="background-color:cadetblue; border-color:darkblue;">
-                    <img class="card-img-top" src="holder.js/100x180/" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
+    </div>
+
+    <script>
+        var velocity = 1.3;
+
+        function update(){
+            var pos = $(window).scrollTop();
+            $('.col-md-7').each(function() {
+                var $element = $(this);
+                // subtract some from the height b/c of the padding
+                var height = $element.height()-18;
+                $(this).css('backgroundPosition', '50% ' + Math.round((height - pos) * velocity) +  'px');
+            });
+        };
+
+        $(window).bind('scroll', update);
+    </script>
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Mar 10, 2019 15:37:25").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+
+            var i =0;
+            $('.timer').each(function() {
+                i++;
+            document.getElementById("timer"+i+"").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+
+            // If the count down is over, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer"+i+"").innerHTML = "EXPIRED";
+            }
+            });
+        }, 1000);
+    </script>
 {% endblock %}
