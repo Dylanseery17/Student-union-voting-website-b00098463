@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 class DefaultController extends AbstractController
 {
@@ -46,4 +48,16 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
+
+    /**
+     * @Route("/Admin", name="admin")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function admin()
+    {
+        return $this->render('default/admin.html.twig', [
+            'controller_name' => 'DefaultController',
+        ]);
+    }
+
 }
