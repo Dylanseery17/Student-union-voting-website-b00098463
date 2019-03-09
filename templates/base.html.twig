@@ -35,24 +35,27 @@
             </li>
         </ul>
         <form class="navbar-nav mr-inline mt-2 mt-lg-0">
-            <!---<li class="nav-item dropdown">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li class="nav-item dropdown" style="padding-right: 5px;">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false">Dropdown</a>
+                   aria-expanded="false">{{ app.user.username }}</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="#">Action 1</a>
-                    <a class="dropdown-item" href="#">Action 2</a>
+                    <a class="dropdown-item" href="#">View Profile</a>
+                    <a class="dropdown-item" href="#">View...</a>
                 </div>
-            </li>--->
+            </li>
             <li class="nav-item"  style="padding-right: 5px;">
-                <!-- Button trigger modal -->
+                <a name="" id="" class="btn btn-outline-light" href="{{url('app_logout')}}" role="button">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item"  style="padding-right: 5px;">
                 <a name="" id="" class="btn btn-outline-light" href="{{url('app_login')}}" role="button">Login</a>
             </li>
             <li class="nav-item">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#Signup">
-                    Sign up
-                </button>
+                <a name="" id="" class="btn btn-outline-light" href="{{url('app_register')}}" role="button">Sign up</a>
             </li>
+            {% endif %}
+
         </form>
     </div>
 </nav>
@@ -91,6 +94,7 @@
 
     });
 </script>
+<script src="Javascript/Profilename.js"></script>
 
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}

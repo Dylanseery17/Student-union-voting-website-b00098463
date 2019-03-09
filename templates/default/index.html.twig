@@ -21,11 +21,19 @@
                         </div>
                     </div>
                     <div class="col-md-5 text-center" style="height:100vh; background-image: url('Images/Default/Jumbo_index_white.png'); background-size: cover;">
-                        <div style="height: 40vh;"></div>
-                        <blockquote class="blockquote">
-                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                        </blockquote>
+
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <div style="height: 17vh;"></div>
+                            <img width="150" height="150"  avatar="{{ app.user.firstname }} {{ app.user.lastname }}" style="border-radius: 50%; margin:50px;">
+                            <h1>Welcome back</h1>
+                            <h1><strong>{{ app.user.username }}</strong></h1>
+                        {% else %}
+                            <div style="height: 40vh;"></div>
+                            <blockquote class="blockquote">
+                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                            </blockquote>
+                        {% endif %}
                     </div>
                 </div>
         </div>
