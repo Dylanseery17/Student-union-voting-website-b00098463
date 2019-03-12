@@ -41,7 +41,7 @@ class AppFixtures extends Fixture
     {
         // create objects
 
-        $User = $this->createUser('dylan', 'seery', 'Dylan', 'Seery','20','B00098463','Dylanseery98outlook.ie','0852368369','123 Slick road' ,'Finglas South' ,'Finglas', 'Dublin' , new \DateTime(),['ROLE_SUPER_ADMIN'] );
+        $User = $this->createUser('dylan', 'seery', 'Dylan', 'Seery','20','B00098463','Dylanseery98outlook.ie','0852368369','123 Slick road' ,'Finglas South' ,'Finglas', 'Dublin' , new \DateTime(),['ROLE_ADMIN'] );
         $Useruser = $this->createUser('abbie', 'seery', 'Dylan', 'Seery','20','B00098463','Dylanseery98outlook.ie','0852368369','123 Slick road' ,'Finglas South' ,'Finglas', 'Dublin' , new \DateTime());
         $manager->persist($User);
         $manager->persist($Useruser);

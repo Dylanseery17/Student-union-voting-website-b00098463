@@ -3,15 +3,51 @@
 {% block title %}About{% endblock %}
 
 {% block body %}
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid" style="background-image: url('Images/Default/Jumbo_admin.png'); background-size: cover; color:white;">
         <div class="container">
-            <h1 class="display-3">Admin Only!!!</h1>
-            <p class="lead">Jumbo helper text</p>
+            <h1 class="display-3">Admin Panel</h1>
+            <p class="lead">{{ app.user.Firstname }} {{ app.user.Lastname }}</p>
             <hr class="my-2">
-            <p>More info</p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Jumbo action name</a>
+                <a class="btn btn-primary btn-lg" href="{{ path('user_new') }}" role="button">Create new user</a>
+                <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Create new vote</a>
             </p>
+        </div>
+    </div>
+
+    <div style="height: 5vh;"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.Firstname }}</td>
+                        <td>{{ user.Lastname }}</td>
+                        <td>
+                            <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
+                            <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                            {{ include('user/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+
+            </div>
         </div>
     </div>
 

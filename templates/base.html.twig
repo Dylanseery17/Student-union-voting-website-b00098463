@@ -33,6 +33,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{url('default_people')}}">People</a>
             </li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% set arr = app.user.roles %}
+            {% set var = 'ROLE_ADMIN' %}
+            {% if var in arr %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('admin')}}">Admin</a>
+                </li>
+            {% endif %}
+            {% endif %}
         </ul>
         <form class="navbar-nav mr-inline mt-2 mt-lg-0">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}

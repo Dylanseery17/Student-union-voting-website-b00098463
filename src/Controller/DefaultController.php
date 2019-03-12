@@ -5,10 +5,17 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use App\Entity\User;
+use App\Form\UserType;
+use Doctrine\ORM\Query;
 
 
 class DefaultController extends AbstractController
 {
+
     /**
      * @Route("/", name="default_index")
      */
@@ -50,13 +57,15 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/Admin", name="admin")
+     * @Route("/admin", name="admin")
      * @IsGranted("ROLE_ADMIN")
      */
-    public function admin()
+    public function admin(UserRepository $userRepository): Response
     {
+        $users = $userRepository->findAll();
+
         return $this->render('default/admin.html.twig', [
-            'controller_name' => 'DefaultController',
+            'users' =>  $users,
         ]);
     }
 
