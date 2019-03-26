@@ -3,9 +3,18 @@
 {% block title %}New Vote{% endblock %}
 
 {% block body %}
-    <h1>Create new Vote</h1>
+<body style="background-color: #EEEEEE">
+<div class="container-fluid" style="padding: 50px;">
+    <div class="row">
+        <div class="col-lg-6"  style="margin: 0 auto;  padding:25px; background-color: white; border-radius: 5px;">
+            <h1>Create new Vote</h1>
 
-    {{ include('vote/_form.html.twig') }}
+            {{ include('vote/_form.html.twig') }}
 
-    <a href="{{ path('vote_index') }}">back to list</a>
+            <br>
+            <a name="" id="" class="btn btn-primary btn-block" href="{{ path('user_index') }}" role="button">back to list</a>
+        </div>
+    </div>
+</div>
+</body>
 {% endblock %}

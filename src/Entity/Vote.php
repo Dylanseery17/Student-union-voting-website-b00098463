@@ -30,9 +30,9 @@ class Vote
     private $Poll;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="string", length=255)
      */
-    private $Choice = [];
+    private $Choice;
 
     /**
      * @ORM\Column(type="datetime")
@@ -69,12 +69,12 @@ class Vote
         return $this;
     }
 
-    public function getChoice(): ?array
+    public function getChoice(): ?string
     {
         return $this->Choice;
     }
 
-    public function setChoice(array $Choice): self
+    public function setChoice(string $Choice): self
     {
         $this->Choice = $Choice;
 

@@ -36,6 +36,9 @@ class VoteController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $Cho = $_POST['Choice'];
+            $vote->setChoice($Cho);
+            $vote->setTime(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($vote);
             $entityManager->flush();

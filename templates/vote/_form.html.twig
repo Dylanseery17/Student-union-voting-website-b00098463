@@ -1,14 +1,19 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
     {% for polls in poll %}
-        <select>
+        <div class="form-group">
+            <label for="exampleFormControlSelect">Choice</label>
+            <select name="Choice" class="form-control" id="FormControlSelect">
+
             {% for options in polls.options %}
-            {% set tpe = options |split(',') %}
-            {% for tpes in tpe %}
-            <option value="{}">{{ tpes }}</option>
+            {% set types = options |split(',') %}
+            {% for type in types %}
+                <option>{{ type }}</option>
             {% endfor %}
             {% endfor %}
-        </select>
+            </select>
+        </div>
     {% endfor %}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <br>
+    <button class="btn btn-primary btn-block">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

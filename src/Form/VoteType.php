@@ -15,21 +15,8 @@ class VoteType extends AbstractType
         $builder
             ->add('Voter')
             ->add('Poll')
-            ->add('Choice', null, [
-
-            ])
-            ->add('Time')
         ;
-        $builder->get('Choice')
-            ->addModelTransformer(new CallbackTransformer(
-                function ($tagsAsArray) {
-                    // transform the array to a string
-                    return implode(', ', $tagsAsArray);
-                },
-                function ($tagsAsString) {
-                    // transform the string back to an array
-                    return explode(', ', $tagsAsString);
-                }));
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
