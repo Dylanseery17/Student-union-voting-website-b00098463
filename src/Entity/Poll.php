@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +11,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Poll
 {
+    public function __toString()
+    {
+        if(is_null($this->Name)) {
+        return 'NULL';
+        }
+        return $this->Name;
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -22,19 +32,39 @@ class Poll
     private $Name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Image;
-
-    /**
      * @ORM\Column(type="string", length=1000)
      */
-    private $Desc;
+    private $Image;
 
     /**
      * @ORM\Column(type="json")
      */
     private $Options = [];
+
+
+    private $Poll;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Vote", mappedBy="Poll", orphanRemoval=true)
+     */
+    private $Poll_id;
+
+    /**
+     * @ORM\Column(type="string", length=1000)
+     */
+    private $Description;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $enddate;
+
+
+    public function __construct()
+    {
+        $this->Poll = new ArrayCollection();
+        $this->Poll_id = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -65,21 +95,15 @@ class Poll
         return $this;
     }
 
-    public function getDesc(): ?string
-    {
-        return $this->Desc;
-    }
-
-    public function setDesc(string $Desc): self
-    {
-        $this->Desc = $Desc;
-
-        return $this;
-    }
 
     public function getOptions(): ?array
     {
-        return $this->Options;
+        $Options = $this->Options;
+
+        if(null != $Options){}
+
+        return array_unique($Options);
+
     }
 
     public function setOptions(array $Options): self
@@ -88,4 +112,91 @@ class Poll
 
         return $this;
     }
+
+    /**
+     * @return Collection|Vote[]
+     */
+    public function getPoll(): Collection
+    {
+        return $this->Poll;
+    }
+
+    public function addPoll(Vote $poll): self
+    {
+        if (!$this->Poll->contains($poll)) {
+            $this->Poll[] = $poll;
+            $poll->setPoll($this);
+        }
+
+        return $this;
+    }
+
+    public function removePoll(Vote $poll): self
+    {
+        if ($this->Poll->contains($poll)) {
+            $this->Poll->removeElement($poll);
+            // set the owning side to null (unless already changed)
+            if ($poll->getPoll() === $this) {
+                $poll->setPoll(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Vote[]
+     */
+    public function getPollId(): Collection
+    {
+        return $this->Poll_id;
+    }
+
+    public function addPollId(Vote $pollId): self
+    {
+        if (!$this->Poll_id->contains($pollId)) {
+            $this->Poll_id[] = $pollId;
+            $pollId->setPoll($this);
+        }
+
+        return $this;
+    }
+
+    public function removePollId(Vote $pollId): self
+    {
+        if ($this->Poll_id->contains($pollId)) {
+            $this->Poll_id->removeElement($pollId);
+            // set the owning side to null (unless already changed)
+            if ($pollId->getPoll() === $this) {
+                $pollId->setPoll(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->Description;
+    }
+
+    public function setDescription(string $Description): self
+    {
+        $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getEnddate(): ?\DateTimeInterface
+    {
+        return $this->enddate;
+    }
+
+    public function setEnddate(\DateTimeInterface $enddate): self
+    {
+        $this->enddate = $enddate;
+
+        return $this;
+    }
+
 }

@@ -3,11 +3,23 @@
 {% block title %}Edit User{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
+<body style="background-color: #EEEEEE">
+<div class="container-fluid" style="padding: 50px;">
+    <div class="row">
+            <div class="col-lg-6"  style="margin: 0 auto;  padding:25px; background-color: white; border-radius: 5px;">
+                    <h1>Edit User</h1>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+                <div style="float: right; margin-top: -45px;">
 
-    <a href="{{ path('user_index') }}">back to list</a>
+                    {{ include('user/_delete_form.html.twig') }}
 
-    {{ include('user/_delete_form.html.twig') }}
+                </div>
+
+                {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+                <br>
+            <a name="" id="" class="btn btn-primary btn-block" href="{{ path('user_index') }}" role="button">back to list</a>
+        </div>
+    </div>
+</div>
+</body>
 {% endblock %}

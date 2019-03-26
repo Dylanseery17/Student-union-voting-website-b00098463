@@ -46,63 +46,28 @@
         </ol>
 
         <div class="row">
+            {% for poll in polls %}
             <div class="col-md-3">
+                <a href="{{ path('poll_show', {'id': poll.id}) }}" style="text-decoration: none;">
                 <div class="card">
                     <div class="card-header">
-                        Presidential Election
+                        {{ poll.Name }}
                     </div>
-                    <img class="card-img-top" src="https://www.adamhamilton.com/images/r/blog_faith-and-the-presidential-election/c960x540g0-0-580-325/blog_faith-and-the-presidential-election.jpg"  style="filter: blur(2px);-webkit-filter: blur(2px);" alt="Card image cap">
-                    <div class="card-body"> <p id="timer4" class="timer"></p> </div>
+                    <img class="card-img-top" src="{{ poll.Image }}"  alt="Card image cap">
+                    <div class="card-body"> <p id="timer4" class="timer">{{ poll.enddate|date('Y-m-d') }}</p>{{ poll.Description }} </div>
                 </div>
+                </a>
             </div>
-            <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-header">
-                            Presidential Election
-                        </div>
-                        <img class="card-img-top" src="https://www.adamhamilton.com/images/r/blog_faith-and-the-presidential-election/c960x540g0-0-580-325/blog_faith-and-the-presidential-election.jpg"  style="filter: blur(2px);-webkit-filter: blur(2px);" alt="Card image cap">
-                        <div class="card-body"> <p id="timer1" class="timer"></p> </div>
-                    </div>
-                </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        Presidential Election
-                    </div>
-                    <img class="card-img-top" src="https://www.adamhamilton.com/images/r/blog_faith-and-the-presidential-election/c960x540g0-0-580-325/blog_faith-and-the-presidential-election.jpg"  style="filter: blur(2px);-webkit-filter: blur(2px);" alt="Card image cap">
-                    <div class="card-body"> <p id="timer2" class="timer"></p> </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        Presidential Election
-                    </div>
-                    <img class="card-img-top" src="https://www.adamhamilton.com/images/r/blog_faith-and-the-presidential-election/c960x540g0-0-580-325/blog_faith-and-the-presidential-election.jpg"  style="filter: blur(2px);-webkit-filter: blur(2px);" alt="Card image cap">
-                    <div class="card-body"> <p id="timer3" class="timer"></p> </div>
-                </div>
-            </div>
+            {% endfor %}
     </div>
     </div>
+
 
     <script>
-        var velocity = 1.3;
-
-        function update(){
-            var pos = $(window).scrollTop();
-            $('.col-md-7').each(function() {
-                var $element = $(this);
-                // subtract some from the height b/c of the padding
-                var height = $element.height()-18;
-                $(this).css('backgroundPosition', '50% ' + Math.round((height - pos) * velocity) +  'px');
-            });
-        };
-
-        $(window).bind('scroll', update);
     </script>
     <script>
         // Set the date we're counting down to
-        var countDownDate = new Date("Mar 10, 2019 15:37:25").getTime();
+        var countDownDate = new Date("Mar 28, 2019").getTime();
 
         // Update the count down every 1 second
         var x = setInterval(function() {

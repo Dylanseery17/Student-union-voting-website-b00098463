@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    {% for polls in poll %}
+        <select>
+            {% for options in polls.options %}
+            {% set tpe = options |split(',') %}
+            {% for tpes in tpe %}
+            <option value="{}">{{ tpes }}</option>
+            {% endfor %}
+            {% endfor %}
+        </select>
+    {% endfor %}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

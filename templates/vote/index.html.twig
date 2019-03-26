@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vote index{% endblock %}
+
+{% block body %}
+    <h1>Vote index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Poll</th>
+                <th>User</th>
+                <th>Choice</th>
+                <th>Time</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vote in votes %}
+            <tr>
+                <td>{{ vote.id }}</td>
+                <td>{{ vote.poll.Name }}</td>
+                <td>{{ vote.Voter.username }}</td>
+                <td>{{ vote.Choice ? vote.Choice|json_encode : '' }}</td>
+                <td>{{ vote.Time ? vote.Time|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('vote_show', {'id': vote.id}) }}">show</a>
+                    <a href="{{ path('vote_edit', {'id': vote.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('vote_new') }}">Create new</a>
+{% endblock %}

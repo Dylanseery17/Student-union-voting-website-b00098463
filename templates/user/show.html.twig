@@ -3,76 +3,88 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+<body style="background-color: #EEEEEE">
+<div class="container-fluid" style="padding: 50px;">
+    <div class="row">
+        <div class="col-lg-6"  style="margin: 0 auto;  padding:25px; background-color: white; border-radius: 5px;">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ user.Firstname }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ user.Lastname }}</td>
-            </tr>
-            <tr>
-                <th>Age</th>
-                <td>{{ user.Age }}</td>
-            </tr>
-            <tr>
-                <th>StudentNumber</th>
-                <td>{{ user.StudentNumber }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.Email }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ user.Telephone }}</td>
-            </tr>
-            <tr>
-                <th>Addressline</th>
-                <td>{{ user.Addressline }}</td>
-            </tr>
-            <tr>
-                <th>Addresslineone</th>
-                <td>{{ user.Addresslineone }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ user.City }}</td>
-            </tr>
-            <tr>
-                <th>County</th>
-                <td>{{ user.County }}</td>
-            </tr>
-            <tr>
-                <th>Datecreated</th>
-                <td>{{ user.Datecreated ? user.Datecreated|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+                <h1>{{ user.username }}</h1>
 
-    <a href="{{ path('user_index') }}">back to list</a>
+            <div style="float: right; margin-top: -45px;">
 
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                {{ include('user/_delete_form.html.twig') }}
 
-    {{ include('user/_delete_form.html.twig') }}
+            </div>
+
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ user.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Username</th>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <th>Roles</th>
+                        <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Firstname</th>
+                        <td>{{ user.Firstname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Lastname</th>
+                        <td>{{ user.Lastname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td>{{ user.Age }}</td>
+                    </tr>
+                    <tr>
+                        <th>StudentNumber</th>
+                        <td>{{ user.StudentNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ user.Email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Telephone</th>
+                        <td>{{ user.Telephone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Addressline</th>
+                        <td>{{ user.Addressline }}</td>
+                    </tr>
+                    <tr>
+                        <th>Addresslineone</th>
+                        <td>{{ user.Addresslineone }}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{ user.City }}</td>
+                    </tr>
+                    <tr>
+                        <th>County</th>
+                        <td>{{ user.County }}</td>
+                    </tr>
+                    <tr>
+                        <th>Datecreated</th>
+                        <td>{{ user.Datecreated ? user.Datecreated|date('Y-m-d') : '' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="{{ path('user_index') }}">back to list</a>
+
+
+            <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+
+            <a name="" id="" class="btn btn-primary btn-block" href="{{ path('user_index') }}" role="button">back to list</a>
+        </div>
+    </div>
+</div>
+</body>
 {% endblock %}

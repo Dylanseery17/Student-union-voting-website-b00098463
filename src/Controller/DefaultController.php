@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Poll;
+use App\Repository\PollRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,9 +21,10 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="default_index")
      */
-    public function index()
+    public function index(PollRepository $pollRepository): Response
     {
         return $this->render('default/index.html.twig', [
+            'polls' => $pollRepository->findAll(),
             'controller_name' => 'DefaultController',
         ]);
     }

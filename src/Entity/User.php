@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -12,6 +14,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    public function __toString()
+    {
+        if(is_null($this->username)) {
+            return 'NULL';
+        }
+        return $this->username;
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -79,6 +89,22 @@ class User implements UserInterface
      * @ORM\Column(type="date")
      */
     private $Datecreated;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Vote", mappedBy="user", orphanRemoval=true)
+     */
+    private $vid;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Vote", mappedBy="Voter", orphanRemoval=true)
+     */
+    private $VoteID;
+
+    public function __construct()
+    {
+        $this->vid = new ArrayCollection();
+        $this->VoteID = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -252,6 +278,68 @@ class User implements UserInterface
     public function setDatecreated(\DateTimeInterface $Datecreated): self
     {
         $this->Datecreated = $Datecreated;
+        return $this;
+    }
+
+    /**
+     * @return Collection|Vote[]
+     */
+    public function getVid(): Collection
+    {
+        return $this->vid;
+    }
+
+    public function addVid(Vote $vid): self
+    {
+        if (!$this->vid->contains($vid)) {
+            $this->vid[] = $vid;
+            $vid->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVid(Vote $vid): self
+    {
+        if ($this->vid->contains($vid)) {
+            $this->vid->removeElement($vid);
+            // set the owning side to null (unless already changed)
+            if ($vid->getUser() === $this) {
+                $vid->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Vote[]
+     */
+    public function getVoteID(): Collection
+    {
+        return $this->VoteID;
+    }
+
+    public function addVoteID(Vote $voteID): self
+    {
+        if (!$this->VoteID->contains($voteID)) {
+            $this->VoteID[] = $voteID;
+            $voteID->setVoter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVoteID(Vote $voteID): self
+    {
+        if ($this->VoteID->contains($voteID)) {
+            $this->VoteID->removeElement($voteID);
+            // set the owning side to null (unless already changed)
+            if ($voteID->getVoter() === $this) {
+                $voteID->setVoter(null);
+            }
+        }
+
         return $this;
     }
 }
