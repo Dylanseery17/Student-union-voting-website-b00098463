@@ -7,6 +7,7 @@ use App\Form\PollType;
 use App\Entity\Vote;
 use App\Entity\User;
 use App\Form\VoteType;
+use App\Repository\VoteRepository;
 use App\Repository\PollRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,13 +32,14 @@ class PollController extends AbstractController
     /**
      * @Route("/vote/{id}", name="poll_vote", methods={"GET","POST"})
      */
-    public function vote(Request $request ,Poll $poll ,PollRepository $pollRepository): Response
+    public function vote(Request $request ,Poll $poll ,PollRepository $pollRepository , VoteRepository $voteRepository): Response
     {
         $vote = new Vote();
-        $user = new User();
         $form = $this->createForm(VoteType::class, $vote);
         $form->handleRequest($request);
         $row = $pollRepository->findByID($poll);
+        $find = $voteRepository->findByPoll($poll);
+        $count = count($find);
 
         $manager = $this->getDoctrine()->getManager();
 
@@ -65,6 +67,7 @@ class PollController extends AbstractController
             'vote' => $vote,
             'form' => $form->createView(),
             'poll' => $poll,
+            'count' => $count,
             'poll_choice' => $row,
         ]);
 

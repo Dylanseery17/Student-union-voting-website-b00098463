@@ -16,18 +16,36 @@
                         <h1>{{ poll.name }}</h1>
                         <h5 id="end" style="color:#4e5359;">{{ poll.enddate|date("m/d/Y") }}</h5>
                         <br>
-                        <h5>Time remaining to vote on {{ poll.name }}</h5>
                         <br>
                         <hr>
                         <h5 id="Timer" class="text-lg-center"></h5>
                         <hr>
                     </div>
                 </div>
+                <br>
 
-                {{ include('vote/_form.html.twig') }}
+                <div class="card bg-light p-3">
+                    <p class="mb-0">So far there has been <strong> {{ count }}</strong> votes.</p>
+                </div>
 
                 <br>
-                <a name="" id="" class="btn btn-primary btn-block" href="{{ path('user_index') }}" role="button">back to list</a>
+
+                <h5>Description</h5>
+                <p>{{ poll.description }}</p>
+
+                <br>
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {{ include('vote/_form.html.twig') }}
+                {% else %}
+                    <div class="alert alert-warning" role="alert">
+                       You can't vote if your not logged in!  <a href="{{url('app_login')}}" class="alert-link">Login now</a> or <a href="{{url('app_register')}}" class="alert-link">Sign up</a>
+                    </div>
+                {% endif %}
+
+
+
+                <br>
             </div>
         </div>
     </div>
@@ -49,7 +67,7 @@
             var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((t % (1000 * 60)) / 1000);
             document.getElementById("Timer").innerHTML = days + " Days "
-                + hours + ":" + minutes + ":" + seconds + " ";
+                + hours + " hours and " + minutes + " minutes remaing to vote";
             if (t < 0) {
                 clearInterval(x);
                 document.getElementById("Timer").innerHTML = "EXPIRED";

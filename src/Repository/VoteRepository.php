@@ -19,6 +19,17 @@ class VoteRepository extends ServiceEntityRepository
         parent::__construct($registry, Vote::class);
     }
 
+    public function findByPoll($value)
+    {
+        return $this->createQueryBuilder('v')
+            ->leftJoin('v.Poll','p')
+            ->where('p.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Vote[] Returns an array of Vote objects
     //  */
