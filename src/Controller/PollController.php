@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Poll;
 use App\Form\PollType;
+use App\Entity\Vote;
+use App\Entity\User;
+use App\Form\VoteType;
 use App\Repository\PollRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +26,48 @@ class PollController extends AbstractController
         return $this->render('poll/index.html.twig', [
             'polls' => $pollRepository->findAll(),
         ]);
+    }
+
+    /**
+     * @Route("/vote/{id}", name="poll_vote", methods={"GET","POST"})
+     */
+    public function vote(Request $request ,Poll $poll ,PollRepository $pollRepository): Response
+    {
+        $vote = new Vote();
+        $user = new User();
+        $form = $this->createForm(VoteType::class, $vote);
+        $form->handleRequest($request);
+        $row = $pollRepository->findByID($poll);
+
+        $manager = $this->getDoctrine()->getManager();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $usr = $_POST['user'];
+            $usr = (int) $usr;
+            $pol = $_POST['poll'];
+            $pol = (int) $pol;
+            $vpoll = $manager->getRepository('App:Poll')->find($pol);
+            $vuser = $manager->getRepository('App:User')->find($usr);
+
+
+            $Cho = $_POST['Choice'];
+            $vote->setChoice($Cho);
+            $vote->setVoter($vuser);
+            $vote->setPoll($vpoll);
+            $vote->setTime(new \DateTime());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($vote);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('vote_index');
+        }
+        return $this->render('vote/pollvote.html.twig', [
+            'vote' => $vote,
+            'form' => $form->createView(),
+            'poll' => $poll,
+            'poll_choice' => $row,
+        ]);
+
     }
 
     /**

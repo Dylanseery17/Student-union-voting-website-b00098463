@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Poll;
 use App\Entity\Vote;
 use App\Form\VoteType;
 use App\Repository\PollRepository;
 use App\Repository\VoteRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,6 +54,7 @@ class VoteController extends AbstractController
             'poll' => $pollRepository->findAll(),
         ]);
     }
+
 
     /**
      * @Route("/{id}", name="vote_show", methods={"GET"})

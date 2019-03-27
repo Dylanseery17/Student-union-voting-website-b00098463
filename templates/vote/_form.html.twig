@@ -1,11 +1,17 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    {% for polls in poll %}
+
+    <input type="hidden" name="user" value="{{ app.user.id }}">
+
+    {% for poll_choices in poll_choice %}
+
+        <input type="hidden" name="poll" value="{{ poll.id }}">
         <div class="form-group">
             <label for="exampleFormControlSelect">Choice</label>
             <select name="Choice" class="form-control" id="FormControlSelect">
 
-            {% for options in polls.options %}
+
+            {% for options in poll_choices.options %}
             {% set types = options |split(',') %}
             {% for type in types %}
                 <option>{{ type }}</option>

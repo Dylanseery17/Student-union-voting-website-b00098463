@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Vote{% endblock %}
+
+{% block body %}
+    <body style="background-color: #EEEEEE">
+    <div class="container-fluid" style="padding: 50px;">
+        <div class="row">
+
+            <div class="col-lg-10"  style="margin: 0 auto; padding: 25px; background-color: white; border-radius: 5px;">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img src="{{ poll.Image }}" style="width: 100%;">
+                    </div>
+                    <div class="col-lg-6" style="text-align: center">
+                        <h1>{{ poll.name }}</h1>
+                        <h5 id="end" style="color:#4e5359;">{{ poll.enddate|date("m/d/Y") }}</h5>
+                        <br>
+                        <h5>Time remaining to vote on {{ poll.name }}</h5>
+                        <br>
+                        <hr>
+                        <h5 id="Timer" class="text-lg-center"></h5>
+                        <hr>
+                    </div>
+                </div>
+
+                {{ include('vote/_form.html.twig') }}
+
+                <br>
+                <a name="" id="" class="btn btn-primary btn-block" href="{{ path('user_index') }}" role="button">back to list</a>
+            </div>
+        </div>
+    </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+
+        var dateString = document.getElementById('end').innerHTML; // Oct 23
+
+        var dateObject = new Date(dateString);
+
+        console.log(dateObject);
+        var deadline = new Date(""+ dateObject +"").getTime();
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var t = deadline - now;
+            var days = Math.floor(t / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+            var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((t % (1000 * 60)) / 1000);
+            document.getElementById("Timer").innerHTML = days + " Days "
+                + hours + ":" + minutes + ":" + seconds + " ";
+            if (t < 0) {
+                clearInterval(x);
+                document.getElementById("Timer").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
+{% endblock %}

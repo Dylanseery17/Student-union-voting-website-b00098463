@@ -19,6 +19,16 @@ class PollRepository extends ServiceEntityRepository
         parent::__construct($registry, Poll::class);
     }
 
+    public function findByID($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Poll[] Returns an array of Poll objects
     //  */

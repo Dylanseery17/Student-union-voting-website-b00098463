@@ -13,8 +13,6 @@ class VoteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Voter')
-            ->add('Poll')
         ;
 
     }
