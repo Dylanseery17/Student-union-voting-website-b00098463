@@ -48,56 +48,32 @@
         <div class="row">
             {% for poll in polls %}
             <div class="col-md-3">
-                <a href="{{ path('poll_show', {'id': poll.id}) }}" style="text-decoration: none;">
+                <a href="{{ path('poll_show', {'id': poll.id}) }}" style="text-decoration: none; color: black;">
                 <div class="card">
                     <div class="card-header">
                         {{ poll.Name }}
                     </div>
-                    <img class="card-img-top" src="{{ poll.Image }}"  alt="Card image cap">
-                    <div class="card-body"> <p id="timer4" class="timer">{{ poll.enddate|date('Y-m-d') }}</p>{{ poll.Description }} </div>
+                    <img class="card-img-top" src="{{ poll.Image }}"  style="height: 150px;" alt="Card image cap">
+                    <div class="card-body"> <p id="timer4" class="timer">{{ poll.enddate|date('d/m/Y') }}</div>
                 </div>
                 </a>
             </div>
             {% endfor %}
-    </div>
+        </div>
     </div>
 
 
     <script>
     </script>
     <script>
-        // Set the date we're counting down to
-        var countDownDate = new Date("Mar 28, 2019").getTime();
+        function date(date2) {
 
-        // Update the count down every 1 second
-        var x = setInterval(function() {
+            var date = new Date();
 
-            // Get todays date and time
-            var now = new Date().getTime();
+            var diff = Math.abs(date.getTime() - date2.getTime()) / 3600000;
 
-            // Find the distance between now and the count down date
-            var distance = countDownDate - now;
+            console.log()
+        }
 
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Output the result in an element with id="demo"
-
-            var i =0;
-            $('.timer').each(function() {
-                i++;
-            document.getElementById("timer"+i+"").innerHTML = days + "d " + hours + "h "
-                + minutes + "m " + seconds + "s ";
-
-            // If the count down is over, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("timer"+i+"").innerHTML = "EXPIRED";
-            }
-            });
-        }, 1000);
     </script>
 {% endblock %}

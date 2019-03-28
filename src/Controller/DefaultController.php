@@ -23,8 +23,10 @@ class DefaultController extends AbstractController
      */
     public function index(PollRepository $pollRepository): Response
     {
+        $result =  $pollRepository->findByEndDate();
+
         return $this->render('default/index.html.twig', [
-            'polls' => $pollRepository->findAll(),
+            'polls' => $result,
             'controller_name' => 'DefaultController',
         ]);
     }

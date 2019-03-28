@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Vote{% endblock %}
+{% block title %}{{ poll.name }}{% endblock %}
 
 {% block body %}
     <body style="background-color: #EEEEEE">
@@ -20,6 +20,8 @@
                         <hr>
                         <h5 id="Timer" class="text-lg-center"></h5>
                         <hr>
+                        <br>
+                        <a name="" id="" class="btn btn-primary" href="{{ path('poll_show', {'id': poll.id}) }}" role="button">View Results</a>
                     </div>
                 </div>
                 <br>
@@ -51,27 +53,5 @@
     </div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script>
-
-        var dateString = document.getElementById('end').innerHTML; // Oct 23
-
-        var dateObject = new Date(dateString);
-
-        console.log(dateObject);
-        var deadline = new Date(""+ dateObject +"").getTime();
-        var x = setInterval(function() {
-            var now = new Date().getTime();
-            var t = deadline - now;
-            var days = Math.floor(t / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
-            var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((t % (1000 * 60)) / 1000);
-            document.getElementById("Timer").innerHTML = days + " Days "
-                + hours + " hours and " + minutes + " minutes remaing to vote";
-            if (t < 0) {
-                clearInterval(x);
-                document.getElementById("Timer").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-    </script>
+    <script src="/Javascript/Countdown.js"></script>
 {% endblock %}

@@ -29,6 +29,16 @@ class PollRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findByEndDate()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->orderBy('p.enddate', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Poll[] Returns an array of Poll objects
     //  */

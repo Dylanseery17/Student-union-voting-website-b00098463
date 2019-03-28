@@ -30,22 +30,32 @@ class VoteRepository extends ServiceEntityRepository
             ;
     }
 
-    // /**
-    //  * @return Vote[] Returns an array of Vote objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByAns($value)
     {
+
         return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
+            ->select('v.Choice')
+            ->leftJoin('v.Poll','p')
+            ->where('p.id = :val')
             ->setParameter('val', $value)
-            ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
+
+    public function countByAns($value , $values)
+    {
+
+        return $this->createQueryBuilder('v')
+            ->leftJoin('v.Poll','p')
+            ->where('p.id = :val')
+            ->setParameter('val', $value)
+            ->andwhere('v.Choice = :vals')
+            ->setParameter('vals', $values)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Vote

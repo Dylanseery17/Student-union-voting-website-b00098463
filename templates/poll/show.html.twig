@@ -1,42 +1,93 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Poll{% endblock %}
+{% block title %}{{ poll.Name }}{% endblock %}
 
 {% block body %}
-    <h1>Poll</h1>
+<body style="background-color: #EEEEEE">
+<div class="container-fluid" style="padding: 50px;">
+    <div class="row">
+        <div class="col-lg-10"  style="margin: 0 auto;  padding:25px; background-color: white; border-radius: 5px;">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="{{ poll.Image }}" style="width: 100%;">
+                </div>
+                <div class="col-lg-6" style="text-align: center">
+                    <h1>{{ poll.name }}</h1>
+                    <h5 id="end" style="color:#4e5359;">{{ poll.enddate|date("m/d/Y") }}</h5>
+                    <br>
+                    <br>
+                    <hr>
+                    <h5 id="Timer" class="text-lg-center"></h5>
+                    <hr>
+                    <br>
+                    <a name="" id="" class="btn btn-primary" href="{{ path('poll_vote', {'id': poll.id}) }}" role="button">Vote now</a>
+                </div>
+            </div>
+            <br>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ poll.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ poll.Name }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ poll.Image }}</td>
-            </tr>
-            <tr>
-                <th>Options</th>
-                <td>{{ poll.Options ? poll.Options|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ poll.Description }}</td>
-            </tr>
-            <tr>
-                <th>Enddate</th>
-                <td>{{ poll.enddate ? poll.enddate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="card bg-light p-3">
+                <p class="mb-0">So far there has been <strong> {{ count }}</strong> votes.</p>
+            </div>
 
-    <a href="{{ path('poll_index') }}">back to list</a>
+            <br>
 
-    <a href="{{ path('poll_edit', {'id': poll.id}) }}">edit</a>
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Congratulations!</h4>
+                    <p>{{ message }} {{ poll.name }}.</p>
+                    <hr>
+                    <p class="mb-0">Thank you for voting and making a difference.</p>
+                </div>
+            {% endfor %}
 
-    {{ include('poll/_delete_form.html.twig') }}
+            <h5>Description</h5>
+            <p>{{ poll.description }}</p>
+
+            <br>
+
+            {% if count == 0 %}
+                <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">{{ poll.name }}</h4>
+                    {{ poll.name }} currently has no votes be the first one to vote.
+                    <a href="{{ path('poll_vote', {'id': poll.id}) }}" class="alert-link">Vote now</a>
+                </div>
+            {% else %}
+            <div class="row">
+                <div class="col-lg-6" style="padding: 50px;">
+                <canvas id="myChart" width="100%" height="100%"></canvas>
+                </div>
+                <div class="col-lg-6" style="padding: 50px;">
+                    <div style="position: relative; top: 50%; transform: translateY(-50%);">
+
+                    {% for type, items in display %}
+
+                        {% for key, value in items %}
+                            {% if value matches '/^\\d+$/' %}
+                            {% else %}
+                            <h6>{{ value }}</h6>
+                            {% endif %}
+                            {% if value matches '/^\\d+$/' %}
+                                <div class="progress" style="height: 30px;">
+                                    <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="{{ value }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ value }}%">{{ value }}%</div>
+                                </div>
+                                <br>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+            {% endif %}
+            
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="/Javascript/PollResults.js"></script>
+<script>f({{ ans|json_encode|raw }} , {{ label|json_encode|raw }});</script>
+<script src="/Javascript/Countdown.js"></script>
 {% endblock %}

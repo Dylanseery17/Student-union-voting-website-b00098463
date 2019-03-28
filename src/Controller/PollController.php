@@ -13,6 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 /**
  * @Route("/poll")
@@ -32,7 +34,7 @@ class PollController extends AbstractController
     /**
      * @Route("/vote/{id}", name="poll_vote", methods={"GET","POST"})
      */
-    public function vote(Request $request ,Poll $poll ,PollRepository $pollRepository , VoteRepository $voteRepository): Response
+    public function vote(Request $request , SessionInterface $session, Poll $poll ,PollRepository $pollRepository , VoteRepository $voteRepository): Response
     {
         $vote = new Vote();
         $form = $this->createForm(VoteType::class, $vote);
@@ -40,6 +42,7 @@ class PollController extends AbstractController
         $row = $pollRepository->findByID($poll);
         $find = $voteRepository->findByPoll($poll);
         $count = count($find);
+
 
         $manager = $this->getDoctrine()->getManager();
 
@@ -61,7 +64,14 @@ class PollController extends AbstractController
             $entityManager->persist($vote);
             $entityManager->flush();
 
-            return $this->redirectToRoute('vote_index');
+            $this->addFlash(
+                'notice',
+                'Aww yeah, you successfully voted on '
+            );
+
+            return $this->redirectToRoute('poll_show', [
+                'id' => $poll->getId(),
+            ]);
         }
         return $this->render('vote/pollvote.html.twig', [
             'vote' => $vote,
@@ -87,7 +97,9 @@ class PollController extends AbstractController
             $entityManager->persist($poll);
             $entityManager->flush();
 
-            return $this->redirectToRoute('poll_index');
+            return $this->redirectToRoute('poll_show', [
+                'id' => $poll->getId(),
+            ]);
         }
 
         return $this->render('poll/new.html.twig', [
@@ -99,10 +111,45 @@ class PollController extends AbstractController
     /**
      * @Route("/{id}", name="poll_show", methods={"GET"})
      */
-    public function show(Poll $poll): Response
+    public function show(Poll $poll,  VoteRepository $voteRepository): Response
     {
+        $vote = new Vote();
+        $find = $voteRepository->findByAns($poll);
+        $countx = count($find);
+
+        $find = array_unique($find, SORT_REGULAR);
+        $count = count($find);
+
+        $votes = [];
+        for($i=0; $i < $count; $i++){
+
+            $quests = $voteRepository->countByAns($poll ,$find[$i]);
+            $counta = count($quests);
+
+            array_push($votes, $counta);
+        }
+
+        $display = [];
+        for($i=0; $i < $count; $i++){
+
+            $quests = $voteRepository->countByAns($poll ,$find[$i]);
+            $countd = count($quests);
+
+            $countd = $countd / $countx * 100;
+            $countd = (int) $countd;
+
+            $tmp = array('val'=>$countd);
+            $src = $find[$i];
+            array_push($display, $src);
+            array_push($display, $tmp);
+        }
+
         return $this->render('poll/show.html.twig', [
             'poll' => $poll,
+            'count' => $countx,
+            'label' => $find,
+            'ans' => $votes,
+            'display' => $display,
         ]);
     }
 
@@ -117,7 +164,7 @@ class PollController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('poll_index', [
+            return $this->redirectToRoute('poll_show', [
                 'id' => $poll->getId(),
             ]);
         }
