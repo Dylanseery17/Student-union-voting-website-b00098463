@@ -80,11 +80,50 @@
             </div>
 
             {% endif %}
-            
+
+            <div class="row">
+                <div class="col-lg-10" style="margin: 0 auto;">
+                    <h5>Comments</h5>
+                    <hr>
+
+                    {% if comments_count == 0 %}
+                        <div class="shadow-sm p-3 mb-5 bg-light rounded">There is currently no comments &#x1F644;. Be the first one to comment &#x1F600; </div>
+                    {% else %}
+                    {% for comment in comments %}
+                    <div class="card">
+                        <div class="card-header">
+
+                            <img width="35" height="35"  avatar="{{ comment.User.firstname }} {{ comment.User.lastname }}" style="border-radius: 50%; margin: 2.5px;">
+                            <strong>{{ comment.User.username }}</strong>
+
+                            <p style="float: right;  margin-top: 5px;">{{ comment.time|date("m/d/Y") }}</p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text" style="margin-left: 40px;">{{ comment.comment }}</p>
+                        </div>
+                    </div>
+                    <br>
+                    {% endfor %}
+                    {% endif %}
+                    <hr>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {{ include('comments/_form.html.twig') }}
+                    {% else %}
+                        <div class="alert alert-warning" role="alert">
+                            You can't comment if your not logged in!  <a href="{{url('app_login')}}" class="alert-link">Login now</a> or <a href="{{url('app_register')}}" class="alert-link">Sign up</a>
+                        </div>
+                    {% endif %}
+
+
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 </body>
+
+<script src="/Javascript/Profilename.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="/Javascript/PollResults.js"></script>

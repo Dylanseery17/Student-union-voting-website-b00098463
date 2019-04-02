@@ -9,6 +9,9 @@ use App\Entity\User;
 use App\Form\VoteType;
 use App\Repository\VoteRepository;
 use App\Repository\PollRepository;
+use App\Entity\Comments;
+use App\Form\CommentsType;
+use App\Repository\CommentsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -92,6 +95,7 @@ class PollController extends AbstractController
         $form = $this->createForm(PollType::class, $poll);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($poll);
@@ -109,13 +113,46 @@ class PollController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="poll_show", methods={"GET"})
+     * @Route("/{id}", name="poll_show", methods={"GET","POST"})
      */
-    public function show(Poll $poll,  VoteRepository $voteRepository): Response
+    public function show(Request $request,Poll $poll,  VoteRepository $voteRepository , CommentsRepository $commentsRepository): Response
     {
         $vote = new Vote();
         $find = $voteRepository->findByAns($poll);
         $countx = count($find);
+
+//        Comment Section for Poll
+        $comment = new Comments();
+        $form = $this->createForm(CommentsType::class, $comment);
+        $form->handleRequest($request);
+
+
+        $manager = $this->getDoctrine()->getManager();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $usr = $_POST['user'];
+            $usr = (int) $usr;
+            $pol = $_POST['poll'];
+            $pol = (int) $pol;
+            $cpoll = $manager->getRepository('App:Poll')->find($pol);
+            $cuser = $manager->getRepository('App:User')->find($usr);
+
+
+            $comm = $_POST['comment'];
+            $comment->setComment($comm);
+            $comment->setUser($cuser);
+            $comment->setPoll($cpoll);
+            $comment->setTime(new \DateTime());
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('poll_show', [
+                'id' => $poll->getId(),
+            ]);
+        }
+
 
         $find = array_unique($find, SORT_REGULAR);
         $count = count($find);
@@ -144,11 +181,17 @@ class PollController extends AbstractController
             array_push($display, $tmp);
         }
 
+        $poll_comments = $commentsRepository->findByPoll($poll);
+        $comment_count = count($poll_comments);
+
         return $this->render('poll/show.html.twig', [
             'poll' => $poll,
             'count' => $countx,
             'label' => $find,
             'ans' => $votes,
+            'comments' => $poll_comments,
+            'comments_count' => $comment_count,
+            'form' => $form->createView(),
             'display' => $display,
         ]);
     }

@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+
+    {{ form_widget(form) }}
+        <input type="hidden" name="user" value="{{ app.user.id }}">
+        <input type="hidden" name="poll" value="{{ poll.id }}">
+
+        <label for="comment">Create new comment for {{ poll.name }}:</label>
+        <textarea class="form-control" rows="3" id="comment" style="resize: none;" name="comment"></textarea>
+        <button class="btn btn-outline-info btn-block">{{ button_label|default('Post Comment') }}</button>
+{{ form_end(form) }}
