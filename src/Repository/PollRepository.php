@@ -31,9 +31,29 @@ class PollRepository extends ServiceEntityRepository
 
     public function findByEndDate()
     {
+        $date = new \DateTime();
+
         return $this->createQueryBuilder('p')
             ->select('p')
             ->orderBy('p.enddate', 'ASC')
+            ->andWhere('p.enddate >= :date')
+            ->setParameter('date', $date)
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByExpired()
+    {
+        $date = new \DateTime();
+
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->orderBy('p.enddate', 'ASC')
+            ->andWhere('p.enddate <= :date')
+            ->setParameter('date', $date)
+            ->setMaxResults(4)
             ->getQuery()
             ->getResult()
             ;

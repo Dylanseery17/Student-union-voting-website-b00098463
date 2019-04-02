@@ -48,12 +48,12 @@
         <div class="row">
             {% for poll in polls %}
             <div class="col-md-3">
-                <a href="{{ path('poll_show', {'id': poll.id}) }}" style="text-decoration: none; color: black;">
-                <div class="card">
+                <a href="{{ path('poll_show', {'id': poll.id}) }}" style="white-space:nowrap; text-decoration: none; color: black;">
+                <div class="card" style="overflow: hidden;">
                     <div class="card-header">
                         {{ poll.Name }}
                     </div>
-                    <img class="card-img-top" src="{{ poll.Image }}"  style="height: 150px;" alt="Card image cap">
+                    <img class="card-img-top" src="{{ poll.Image }}"  style="height: 150px;  object-fit:cover;" alt="Card image cap">
                     <div class="card-body"> <p id="timer4" class="timer">{{ poll.enddate|date('d/m/Y') }}</div>
                 </div>
                 </a>

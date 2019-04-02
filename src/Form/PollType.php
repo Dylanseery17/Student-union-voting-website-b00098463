@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class PollType extends AbstractType
 {
@@ -16,7 +17,10 @@ class PollType extends AbstractType
         $dt = new \DateTime();
         $builder
             ->add('Name')
-            ->add('Image')
+            ->add('Upload_Image', FileType::class, [
+                'mapped' => false,
+                'label' => 'Please upload an image',
+            ])
             ->add('Options', null, [
 
             ])

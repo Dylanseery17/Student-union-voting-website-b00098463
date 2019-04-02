@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesser;
 
 
 /**
@@ -97,6 +98,20 @@ class PollController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $request->files->get('poll')['Upload_Image'];
+            print_r($file);
+            $uploads_directory = $this->getParameter('uploads_directory');
+
+            $filename = md5(uniqid()) . '.' . 'jpg';
+
+            $file->move(
+                $uploads_directory,
+                $filename
+            );
+
+            $poll->setImage('/Uploads/'.$filename);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($poll);
             $entityManager->flush();
