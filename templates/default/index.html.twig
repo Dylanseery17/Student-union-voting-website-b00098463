@@ -16,7 +16,7 @@
                                 <br> <br> <br>
                                 <h2 class="text-center" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h2>
                                 <br> <br>
-                                <a name="" id="" class="btn btn-primary btn-lg"" href="#" role="button">Start Voting</a>
+                                <a name="" id="" class="btn btn-primary btn-lg" href="#" role="button">Start Voting</a>
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,11 @@
 
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                             <div style="height: 17vh;"></div>
+                            {% if app.user.image is null %}
                             <img width="150" height="150"  avatar="{{ app.user.firstname }} {{ app.user.lastname }}" style="border-radius: 50%; margin:50px;">
+                            {% else %}
+                            <img width="150" height="150"  src="{{ app.user.image }}" style="border-radius: 50%; margin:50px;">
+                            {% endif %}
                             <h1>Welcome back</h1>
                             <h1><strong>{{ app.user.username }}</strong></h1>
                         {% else %}
@@ -47,18 +51,61 @@
 
         <div class="row">
             {% for poll in polls %}
-            <div class="col-md-3">
-                <a href="{{ path('poll_show', {'id': poll.id}) }}" style="white-space:nowrap; text-decoration: none; color: black;">
-                <div class="card" style="overflow: hidden;">
-                    <div class="card-header">
-                        {{ poll.Name }}
-                    </div>
-                    <img class="card-img-top" src="{{ poll.Image }}"  style="height: 150px;  object-fit:cover;" alt="Card image cap">
-                    <div class="card-body"> <p id="timer4" class="timer">{{ poll.enddate|date('d/m/Y') }}</div>
+                <div class="col-md-3">
+                    <a href="{{ path('poll_show', {'id': poll.id}) }}" style="white-space:nowrap; text-decoration: none; color: black;">
+                        <div class="card" style="overflow: hidden;">
+                            <div class="card-header">
+                                {{ poll.Name }}
+                            </div>
+                            <img class="card-img-top" src="{{ poll.Image }}"  style="height: 150px;  object-fit:cover;" alt="Card image cap">
+                            <div class="card-body"> <p id="timer4" class="timer">{{ poll.enddate|date('d/m/Y') }}</div>
+                        </div>
+                    </a>
                 </div>
-                </a>
-            </div>
             {% endfor %}
+        </div>
+
+        <br>
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Recently Finished</li>
+        </ol>
+
+        <div class="row">
+            {% for endpoll in endpolls %}
+                <div class="col-md-3">
+                    <a href="{{ path('poll_show', {'id': endpoll.id}) }}" style="white-space:nowrap; text-decoration: none; color: black;">
+                        <div class="card" style="overflow: hidden;">
+                            <div class="card-header">
+                                {{ endpoll.Name }}
+                            </div>
+                            <img class="card-img-top" src="{{ endpoll.Image }}"  style="height: 150px;  object-fit:cover;" alt="Card image cap">
+                            <div class="card-body"> <p id="timer4" class="timer">{{ endpoll.enddate|date('d/m/Y') }}</div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <br><br>
+
+    <div id="jumbo" class="jumbotron jumbotron-fluid" style="height:75vh; overflow: hidden;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12" style="height: 100vh; background-image: url('Images/Default/JumboSvg.svg'); background-repeat: no-repeat; background-size: cover; margin-top: -62px">
+                    <center>
+                    <br>
+                    <br>
+                    <img src="Images/Default/TUD_WHITE.png" class="img-fluid rounded-top" alt="" style="height:125px;">
+                    <br><br><br>
+                    <h5 class="font-weight-lighter" style="color: white">Polls can be created on the Technological University Dublin only by users.<br>If there proposed poll gets enough support / up votes from other users.<br> Shortly after an admin will confirm the poll and make it active.</h5>
+                    <br><br>
+                        <button type="button" class="btn btn-dark">Create a poll</button>
+                        <button type="button" class="btn btn-dark">Support proposed polls</button>
+                    </center>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -11,6 +11,9 @@ use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\User;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
+use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Form\UserType;
 use Doctrine\ORM\Query;
 
@@ -24,9 +27,11 @@ class DefaultController extends AbstractController
     public function index(PollRepository $pollRepository): Response
     {
         $result =  $pollRepository->findByEndDate();
+        $finished = $pollRepository->findByExpired();
 
         return $this->render('default/index.html.twig', [
             'polls' => $result,
+            'endpolls' => $finished,
             'controller_name' => 'DefaultController',
         ]);
     }
@@ -72,6 +77,54 @@ class DefaultController extends AbstractController
         return $this->render('default/admin.html.twig', [
             'users' =>  $users,
         ]);
+    }
+
+    /**
+     * Link to this controller to start the "connect" process
+     *
+     * @Route("/connect/google", name="connect_google")
+     * @param ClientRegistry $clientRegistry
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function connectAction(ClientRegistry $clientRegistry)
+    {
+        return $clientRegistry
+            ->getClient('google') // key used in config/packages/knpu_oauth2_client.yaml
+            ->redirect()
+            ;
+    }
+
+    /**
+     * Facebook redirects to back here afterwards
+     *
+     * @Route("/connect/google/check", name="connect_google_check")
+     * @param Request $request
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function connectCheckAction(Request $request, ClientRegistry $clientRegistry)
+    {
+        // ** if you want to *authenticate* the user, then
+        // leave this method blank and create a Guard authenticator
+        // (read below)
+
+        /** @var \KnpU\OAuth2ClientBundle\Client\Provider\FacebookClient $client */
+        $client = $clientRegistry->getClient('google');
+
+        try {
+            // the exact class depends on which provider you're using
+            /** @var \League\OAuth2\Client\Provider\FacebookUser $user */
+            $user = $client->fetchUser();
+
+            // do something with all this new power!
+            // e.g. $name = $user->getFirstName();
+            var_dump($user); die;
+            // ...
+        } catch (IdentityProviderException $e) {
+            // something went wrong!
+            // probably you should return the reason to the user
+            var_dump($e->getMessage()); die;
+        }
+
     }
 
 }

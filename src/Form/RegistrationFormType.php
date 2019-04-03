@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -18,6 +19,11 @@ class RegistrationFormType extends AbstractType
             ->add('username')
             ->add('Firstname')
             ->add('Lastname')
+            ->add('Upload_Image', FileType::class, [
+                'mapped' => false,
+                'label' => 'Please upload an image',
+                'required' => false,
+            ])
             ->add('Age')
             ->add('StudentNumber')
             ->add('Email')

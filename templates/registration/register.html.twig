@@ -3,22 +3,20 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.Firstname) }}
-        {{ form_row(registrationForm.Lastname) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.Password) }}
-        {{ form_row(registrationForm.Age) }}
-        {{ form_row(registrationForm.StudentNumber) }}
-        {{ form_row(registrationForm.Email) }}
-        {{ form_row(registrationForm.Telephone) }}
-        {{ form_row(registrationForm.Addressline) }}
-        {{ form_row(registrationForm.Addresslineone) }}
-        {{ form_row(registrationForm.City) }}
-        {{ form_row(registrationForm.County) }}
+<div class="container-fluid" style="padding: 50px;">
+    <div class="row">
+        <div class="col-lg-6"  style="margin: 0 auto;  padding:25px; background-color: white; border-radius: 5px;">
+            <h1>Register</h1>
 
-        <button class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+            <a name="" id="" class="btn btn-primary" href="{{ path('connect_google') }}" role="button">Google</a>
+
+            {{ form_start(registrationForm) }}
+
+                <button class="btn">Register</button>
+            {{ form_end(registrationForm) }}
+
+        </div>
+    </div>
+</div>
 {% endblock %}

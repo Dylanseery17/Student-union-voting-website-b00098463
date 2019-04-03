@@ -98,11 +98,14 @@
                     {% for comment in comments %}
                     <div class="card">
                         <div class="card-header">
-
-                            <img width="35" height="35"  avatar="{{ comment.User.firstname }} {{ comment.User.lastname }}" style="border-radius: 50%; margin: 2.5px;">
+                            {% if comment.User.image is null %}
+                                <img width="35" height="35"  avatar="{{ comment.User.firstname }} {{ comment.User.lastname }}" style="border-radius: 50%; margin: 2.5px;">
+                            {% else %}
+                                <img width="50" height="50"  src="{{ comment.User.image }}" style="border-radius: 50%; margin: 2.5px;">
+                            {% endif %}
                             <strong>{{ comment.User.username }}</strong>
 
-                            <p style="float: right;  margin-top: 5px;">{{ comment.time|date("m/d/Y") }}</p>
+                            <p style="float: right;  margin-top: 5px;">{{ comment.time|date("m/d/Y H:i:s") }}</p>
                         </div>
                         <div class="card-body">
                             <p class="card-text" style="margin-left: 40px;">{{ comment.comment }}</p>

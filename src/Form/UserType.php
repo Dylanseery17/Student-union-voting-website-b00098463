@@ -12,6 +12,7 @@ use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class UserType extends AbstractType
 {
@@ -36,6 +37,11 @@ class UserType extends AbstractType
             ->add('Age')
             ->add('StudentNumber')
             ->add('Email')
+            ->add('Upload_Image', FileType::class, [
+                'mapped' => false,
+                'label' => 'Please upload an image',
+                'required' => false,
+            ])
             ->add('Telephone')
             ->add('Addressline')
             ->add('Addresslineone')

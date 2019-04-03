@@ -105,12 +105,17 @@ class PollController extends AbstractController
 
             $filename = md5(uniqid()) . '.' . 'jpg';
 
-            $file->move(
-                $uploads_directory,
-                $filename
-            );
+            if($file == null){
 
-            $poll->setImage('/Uploads/'.$filename);
+            }else{
+                $file->move(
+                    $uploads_directory,
+                    $filename
+                );
+
+                $poll->setImage('/Uploads/'.$filename);
+
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($poll);
