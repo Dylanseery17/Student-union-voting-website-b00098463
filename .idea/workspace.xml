@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8f9cae2-17d7-45af-80d7-89c1bd44d030" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,11 +50,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="425">
+              <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="72" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/routes.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="15" lean-forward="true" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -68,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/var/log/dev.log">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="386">
-              <caret line="30246" lean-forward="true" selection-start-line="30246" selection-end-line="30246" />
+              <caret line="30246" selection-start-line="30246" selection-end-line="30246" />
             </state>
           </provider>
         </entry>
@@ -96,20 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/packages/knpu_oauth2_client.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="24" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-31">
-              <caret column="9" selection-start-column="9" selection-end-column="9" />
+            <state relative-caret-position="360">
+              <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -189,10 +189,10 @@
         <option value="$PROJECT_DIR$/src/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/config/services.yaml" />
         <option value="$PROJECT_DIR$/src/Security/GoogleAuthenticator.php" />
-        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
       </list>
     </option>
   </component>
@@ -308,6 +308,33 @@
               <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
               <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -363,19 +390,19 @@
       <workItem from="1553598559183" duration="7687000" />
       <workItem from="1553700001104" duration="11885000" />
       <workItem from="1553725530813" duration="20532000" />
-      <workItem from="1554230580995" duration="27749000" />
+      <workItem from="1554230580995" duration="28370000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141686000" />
+    <option name="totallyTimeSpent" value="142307000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3214826" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.3214826" />
+      <window_info id="Structure" order="1" sideWeight="0.5008606" side_tool="true" weight="0.3214826" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48260212" weight="0.39770868" />
@@ -401,13 +428,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/vote/_form.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="75" selection-start-line="23" selection-start-column="75" selection-end-line="23" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/vote/_delete_form.html.twig">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -746,13 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31">
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -769,7 +782,7 @@
     <entry file="file://$PROJECT_DIR$/var/log/dev.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
-          <caret line="30246" lean-forward="true" selection-start-line="30246" selection-end-line="30246" />
+          <caret line="30246" selection-start-line="30246" selection-end-line="30246" />
         </state>
       </provider>
     </entry>
@@ -792,8 +805,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="425">
+          <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="15" lean-forward="true" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
         </state>
       </provider>
     </entry>

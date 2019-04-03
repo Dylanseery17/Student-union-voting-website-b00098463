@@ -30,6 +30,7 @@ security:
                     - App\Security\LoginFormAuthenticator
             logout:
                 path:   app_logout
+                target: default_index
             access_denied_handler: App\Security\AccessDeniedHandler
 
             # activate different ways to authenticate
