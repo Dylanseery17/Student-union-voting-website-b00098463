@@ -30,6 +30,10 @@
         "symfony/web-server-bundle": "4.2.*",
         "symfony/yaml": "4.2.*"
     },
+    "compile": [
+        "bin/grav install",
+        "bin/gpm install quark -y"
+    ],
     "config": {
         "preferred-install": {
             "*": "dist"
