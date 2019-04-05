@@ -30,6 +30,36 @@ class VoteRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findByPollByUser($poll , $user)
+    {
+        return $this->createQueryBuilder('v')
+            ->select('v.Choice','v.Time')
+            ->leftJoin('v.Poll','p')
+            ->where('p.id = :poll')
+            ->setParameter('poll', $poll)
+            ->leftJoin('v.Voter','u')
+            ->andwhere('u.username = :val')
+            ->setParameter('val', $user)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByUser($poll , $user)
+    {
+        return $this->createQueryBuilder('v')
+            ->select('v.Choice')
+            ->leftJoin('v.Poll','p')
+            ->where('p.id = :val')
+            ->setParameter('val', $poll)
+            ->leftJoin('v.Voter','u')
+            ->where('u.username = :val')
+            ->setParameter('val', $user)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function findByAns($value)
     {
 

@@ -20,6 +20,7 @@ class PollType extends AbstractType
             ->add('Upload_Image', FileType::class, [
                 'mapped' => false,
                 'label' => 'Please upload an image',
+                'multiple' => true,
             ])
             ->add('Options', null, [
 

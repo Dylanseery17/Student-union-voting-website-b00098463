@@ -32,7 +32,7 @@ class Poll
     private $Name;
 
     /**
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="json")
      */
     private $Image;
 
@@ -83,12 +83,17 @@ class Poll
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage(): ?array
     {
-        return $this->Image;
+
+        $Image = $this->Image;
+
+        if(null != $Image){}
+
+        return array_unique($Image);
     }
 
-    public function setImage(string $Image): self
+    public function setImage(array $Image): self
     {
         $this->Image = $Image;
 

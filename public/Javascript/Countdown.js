@@ -15,6 +15,6 @@ var x = setInterval(function() {
         + hours + " hours and " + minutes + " minutes remaing to vote";
     if (t < 0) {
         clearInterval(x);
-        document.getElementById("Timer").innerHTML = "EXPIRED";
+        document.getElementById("Timer").innerHTML = "FINISHED";
     }
 }, 1000);

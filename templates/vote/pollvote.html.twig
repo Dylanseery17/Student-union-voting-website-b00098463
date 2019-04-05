@@ -10,7 +10,23 @@
             <div class="col-lg-10"  style="margin: 0 auto; padding: 25px; background-color: white; border-radius: 5px;">
                 <div class="row">
                     <div class="col-lg-6">
-                        <img src="{{ poll.Image }}" style="width: 100%;">
+                        <div id="carouselFadeExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+                            <div class="carousel-inner" role="listbox">
+                                {% for image in poll.Image %}
+                                    <div {% if loop.index0 == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
+                                        <img class="d-block w-100" alt="{{ image }}" src="{{ image }}"/>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselFadeExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselFadeExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
                     </div>
                     <div class="col-lg-6" style="text-align: center">
                         <h1>{{ poll.name }}</h1>
@@ -38,10 +54,36 @@
                 <br>
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% if voted <= 1 %}
+                    <div class="alert alert-success" role="alert">
+                        You can't vote twice  <a href="{{ path('poll_show', {'id': poll.id}) }}" class="alert-link">View The Results</a> or <a href="{{url('poll_index')}}" class="alert-link">Discover more polls</a>
+                    </div>
+                    <br>
+                    <h5>Your Vote</h5><hr>
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>Poll</th>
+                            <th>Choice</th>
+                            <th>Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for vote in votes%}
+                        <tr>
+                            <th scope="row">{{ poll.name }}</th>
+                            <td>{{ vote.Choice }}</td>
+                            <td>{{ vote.Time|date("d-m-Y") }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
                     {{ include('vote/_form.html.twig') }}
+                {% endif %}
                 {% else %}
                     <div class="alert alert-warning" role="alert">
-                       You can't vote if your not logged in!  <a href="{{url('app_login')}}" class="alert-link">Login now</a> or <a href="{{url('app_register')}}" class="alert-link">Sign up</a>
+                        You can't vote if your not logged in! <a href="{{url('app_login')}}" class="alert-link">Login now</a> or <a href="{{url('app_register')}}" class="alert-link">Sign up</a>
                     </div>
                 {% endif %}
 

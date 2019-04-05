@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <div class="card">
-                            <img class="card-img" src="{{ poll.Image }}" alt="Card image" style="height:100%; white-space: nowrap">
+                            <img class="card-img" src="{{ poll.Image|first }}" alt="Card image" style="height:100%; white-space: nowrap">
                         </div>
                     </div>
                     </div>
@@ -67,7 +67,7 @@
                         <a href="" style="text-decoration: none; ">
                         <div class="card" style="height: 20%; width: 80%; background-color: black">
 
-                            <img class="card-img" src="{{ poll.Image }}" alt="Card image"  style="height:100%; opacity: 0.5;">
+                            <img class="card-img" src="{{ poll.Image|first }}" alt="Card image"  style="height:100%; opacity: 0.5;">
                             <div class="card-img-overlay" style="color: white; position: absolute">
                                 <h3 class="card-header">{{ poll.Name }}</h3>
                                 <br><br>

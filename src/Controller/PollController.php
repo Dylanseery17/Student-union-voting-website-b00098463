@@ -14,6 +14,7 @@ use App\Form\CommentsType;
 use App\Repository\CommentsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -38,7 +39,7 @@ class PollController extends AbstractController
     /**
      * @Route("/vote/{id}", name="poll_vote", methods={"GET","POST"})
      */
-    public function vote(Request $request , SessionInterface $session, Poll $poll ,PollRepository $pollRepository , VoteRepository $voteRepository): Response
+    public function vote(UserInterface $userz , Request $request , SessionInterface $session, Poll $poll ,PollRepository $pollRepository , VoteRepository $voteRepository): Response
     {
         $vote = new Vote();
         $form = $this->createForm(VoteType::class, $vote);
@@ -47,9 +48,12 @@ class PollController extends AbstractController
         $find = $voteRepository->findByPoll($poll);
         $count = count($find);
 
+        $userId = $userz->getUsername();
+        $didyouVote = $voteRepository->findByPollByUser($poll,$userId);
+        $didyouVotecount = count($didyouVote);
+
 
         $manager = $this->getDoctrine()->getManager();
-
         if ($form->isSubmitted() && $form->isValid()) {
             $usr = $_POST['user'];
             $usr = (int) $usr;
@@ -82,6 +86,8 @@ class PollController extends AbstractController
             'form' => $form->createView(),
             'poll' => $poll,
             'count' => $count,
+            'votes' => $didyouVote,
+            'voted' => $didyouVotecount,
             'poll_choice' => $row,
         ]);
 
@@ -99,21 +105,23 @@ class PollController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $file = $request->files->get('poll')['Upload_Image'];
-            print_r($file);
             $uploads_directory = $this->getParameter('uploads_directory');
+            $file = $request->files->get('poll')['Upload_Image'];
+            $img = [];
+            foreach($file as $files){
+                $filename = md5(uniqid()) . '.' . 'jpg';
 
-            $filename = md5(uniqid()) . '.' . 'jpg';
+                if($files == null){
 
-            if($file == null){
+                }else{
+                    $files->move(
+                        $uploads_directory,
+                        $filename
+                    );
+               array_push($img, '/Uploads/'.$filename);
+            }
 
-            }else{
-                $file->move(
-                    $uploads_directory,
-                    $filename
-                );
-
-                $poll->setImage('/Uploads/'.$filename);
+                $poll->setImage($img);
 
             }
 
@@ -135,7 +143,7 @@ class PollController extends AbstractController
     /**
      * @Route("/{id}", name="poll_show", methods={"GET","POST"})
      */
-    public function show(Request $request,Poll $poll,  VoteRepository $voteRepository , CommentsRepository $commentsRepository): Response
+    public function show(Request $request,Poll $poll,  VoteRepository $voteRepository , CommentsRepository $commentsRepository ,PollRepository $pollRepository ): Response
     {
         $vote = new Vote();
         $find = $voteRepository->findByAns($poll);
@@ -146,6 +154,8 @@ class PollController extends AbstractController
         $form = $this->createForm(CommentsType::class, $comment);
         $form->handleRequest($request);
 
+        $expired = $pollRepository->findByExpiredID($poll);
+        $expired = count($expired);
 
         $manager = $this->getDoctrine()->getManager();
 
@@ -209,6 +219,7 @@ class PollController extends AbstractController
             'count' => $countx,
             'label' => $find,
             'ans' => $votes,
+            'expired' => $expired,
             'comments' => $poll_comments,
             'comments_count' => $comment_count,
             'form' => $form->createView(),
@@ -226,6 +237,26 @@ class PollController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $uploads_directory = $this->getParameter('uploads_directory');
+            $file = $request->files->get('poll')['Upload_Image'];
+            $img = [];
+            foreach($file as $files){
+                $filename = md5(uniqid()) . '.' . 'jpg';
+
+                if($files == null){
+
+                }else{
+                    $files->move(
+                        $uploads_directory,
+                        $filename
+                    );
+                    array_push($img, '/Uploads/'.$filename);
+                }
+
+                $poll->setImage($img);
+
+            }
 
             return $this->redirectToRoute('poll_show', [
                 'id' => $poll->getId(),

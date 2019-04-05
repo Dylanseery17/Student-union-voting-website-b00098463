@@ -59,6 +59,23 @@ class PollRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findByExpiredID($value)
+    {
+        $date = new \DateTime();
+
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->orderBy('p.enddate', 'ASC')
+            ->andWhere('p.enddate <= :date')
+            ->andWhere('p.id = :val')
+            ->setParameter('val', $value)
+            ->setParameter('date', $date)
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Poll[] Returns an array of Poll objects
     //  */
