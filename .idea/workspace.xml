@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e8f9cae2-17d7-45af-80d7-89c1bd44d030" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Javascript/Countdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/Javascript/Countdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PollController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PollController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Poll.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Poll.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/PollType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/PollType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/PollRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PollRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/VoteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/VoteRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/poll/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/poll/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/poll/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/poll/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/vote/pollvote.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vote/pollvote.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="e8f9cae2-17d7-45af-80d7-89c1bd44d030" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -408,12 +396,12 @@
       <workItem from="1553700001104" duration="11885000" />
       <workItem from="1553725530813" duration="20532000" />
       <workItem from="1554230580995" duration="31337000" />
-      <workItem from="1554467410210" duration="8052000" />
+      <workItem from="1554467410210" duration="8588000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153326000" />
+    <option name="totallyTimeSpent" value="153862000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
