@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid" style="background-image: url('../../Images/Default/Jumbo_admin.png'); background-size: cover; color:white;">
+        <div class="container">
+            <h1 class="display-3">Admin Panel - Vote Index</h1>
+            <p class="lead">{{ app.user.Firstname }} {{ app.user.Lastname }}</p>
+            <p class="lead">
+                <a class="btn btn-primary" href="{{ path('vote_new') }}" role="button" style="padding-right: 20px;">Create new vote</a>
+                <a class="btn btn-secondary" href="{{ path('admin') }}" role="button" style="padding-right: 20px;">Back to admin panel</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12" >
+                <h3>Search votes</h3>
+                <div class="input-group mb-3" style="">
+                    <input type="text" class="form-control" id="Search" placeholder="Search by username" onkeyup="Search()" aria-label="" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" id="Search_name" placeholder="Search by poll name" onkeyup="Search_name()" aria-label="" aria-describedby="basic-addon1">
+                </div><br>
+                <div style="overflow:scroll; height: 500px;">
+                <table class="table" id="vote_table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th></th>
+                        <th>Username</th>
+                        <th>Poll</th>
+                        <th>Choice</th>
+                        <th>Time</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for vote in votes %}
+                        <tr>
+                            <td>{% if vote.Voter.image is null %}
+                                    <img width="35" height="35"  avatar="{{ vote.Voter.firstname }} {{ vote.Voter.lastname }}" style="border-radius: 50%; float: left;">
+                                {% else %}
+                                    <img width="35" height="35"  src="{{ vote.Voter.image }}" style="border-radius: 50%; float: left;">
+                                {% endif %}</td>
+                            <td>{{ vote.Voter.username }}</td>
+                            <td>{{ vote.Poll.name }}</td>
+                            <td>{{ vote.Choice }}</td>
+                            <td>{{ vote.time ? vote.time|date('d/m/Y') : ''  }}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a role="button" class="btn btn-primary" href="{{ path('vote_show', {'id': vote.id}) }}">Show</a>
+                                    <a role="button" class="btn btn-primary" href="{{ path('vote_edit', {'id': vote.id}) }}">Edit</a>
+                                    {{ include('vote/_delete_form.html.twig') }}
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="16">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    {#<div class="container" style="margin-top: 50px;">#}
+        {#<div class="row">#}
+            {#<div class="col-lg-6">#}
+                {#<h4>Users Created in last 7 days</h4>#}
+                {#<canvas id="myChart" width="400" height="400"></canvas>#}
+            {#</div>#}
+            {#<div class="col-lg-6">#}
+
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="../../Javascript/Last7days.js"></script>
+    <script>
+        function Search() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("Search");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("vote_table");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function Search_name() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("Search_name");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("vote_table");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="/Javascript/Profilename.js"></script>
+{% endblock %}

@@ -321,6 +321,6 @@ class PollController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('poll_index');
+        return $this->redirectToRoute('admin_poll_index');
     }
 }

@@ -3,13 +3,12 @@
 {% block title %}About{% endblock %}
 
 {% block body %}
-    <div class="jumbotron jumbotron-fluid" style="background-image: url('Images/Default/Jumbo_admin.png'); background-size: cover; color:white;">
+    <div class="jumbotron jumbotron-fluid" style="background-image: url('../Images/Default/Jumbo_admin.png'); background-size: cover; color:white;">
         <div class="container">
             <h1 class="display-3">Admin Panel</h1>
             <p class="lead">{{ app.user.Firstname }} {{ app.user.Lastname }}</p>
             <p class="lead">
-                <a class="btn btn-primary " href="{{ path('user_index') }}" role="button">User panel</a>
-                <a class="btn btn-primary " href="Jumbo action link" role="button">Poll panel</a>
+                Unauthorised access is prohibited
             </p>
         </div>
     </div>
@@ -36,6 +35,7 @@
                 </div> </a>
             </div>
             <div class="col-xl-3 col-md-6 mb-4">
+                <a  href="{{ path('admin_poll_index') }}" style="text-decoration: none; color:black;">
                 <div class="card border-left-success">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -48,9 +48,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div></a>
             </div>
             <div class="col-xl-3 col-md-6 mb-4">
+                <a  href="{{ path('admin_proposed_index') }}" style="text-decoration: none; color:black;">
                 <div class="card border-left-success">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -63,9 +64,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div></a>
             </div>
             <div class="col-xl-3 col-md-6 mb-4">
+                <a  href="{{ path('admin_vote_index') }}" style="text-decoration: none; color:black;">
                 <div class="card border-left-success">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -79,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div></a>
         </div>
     </div>
 

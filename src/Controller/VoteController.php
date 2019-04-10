@@ -99,6 +99,6 @@ class VoteController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('vote_index');
+        return $this->redirectToRoute('admin_vote_index');
     }
 }

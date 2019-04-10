@@ -20,45 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UserController extends AbstractController
 {
-    /**
-     * @Route("/", name="user_index", methods={"GET"})
-     */
-    public function index(UserRepository $userRepository): Response
-    {
-        $dates = [];
-        $day = date('Y-m-d', strtotime('-1 days'));
-        array_push($dates, $day);
-        $day = date('Y-m-d', strtotime('-2 days'));
-        array_push($dates, $day);
-        $day = date('Y-m-d', strtotime('-3 days'));
-        array_push($dates, $day);
-        $day = date('Y-m-d', strtotime('-4 days'));
-        array_push($dates, $day);
-        $day = date('Y-m-d', strtotime('-5 days'));
-        array_push($dates, $day);
-        $day = date('Y-m-d', strtotime('-6 days'));
-        array_push($dates, $day);
-        $day = date('Y-m-d', strtotime('-7 days'));
-        array_push($dates, $day);
 
-
-        $arrlength = count($dates);
-
-        $date = [];
-        for($i=0; $i < $arrlength; $i++){
-
-            $quests = $userRepository->findByDateCreated($dates[$i]);
-            $count = count($quests);
-
-
-            array_push($date, $count);
-        }
-
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-            'dates' => $date
-        ]);
-    }
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})

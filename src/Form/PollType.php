@@ -7,6 +7,7 @@ use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
@@ -25,7 +26,9 @@ class PollType extends AbstractType
             ->add('Options', null, [
 
             ])
-            ->add('Description')
+            ->add('Description', TextareaType::class, array(
+                'attr' => array('cols' => '5', 'rows' => '5'),
+            ))
             ->add('enddate', DateType::class, [
                 'placeholder' => [new \DateTime()]
             ])

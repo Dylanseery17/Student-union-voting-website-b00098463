@@ -91,11 +91,6 @@ class User implements UserInterface
     private $Datecreated;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Vote", mappedBy="user", orphanRemoval=true)
-     */
-    private $vid;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Vote", mappedBy="Voter", orphanRemoval=true)
      */
     private $VoteID;
@@ -108,7 +103,6 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->vid = new ArrayCollection();
         $this->VoteID = new ArrayCollection();
     }
 
@@ -284,37 +278,6 @@ class User implements UserInterface
     public function setDatecreated(\DateTimeInterface $Datecreated): self
     {
         $this->Datecreated = $Datecreated;
-        return $this;
-    }
-
-    /**
-     * @return Collection|Vote[]
-     */
-    public function getVid(): Collection
-    {
-        return $this->vid;
-    }
-
-    public function addVid(Vote $vid): self
-    {
-        if (!$this->vid->contains($vid)) {
-            $this->vid[] = $vid;
-            $vid->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVid(Vote $vid): self
-    {
-        if ($this->vid->contains($vid)) {
-            $this->vid->removeElement($vid);
-            // set the owning side to null (unless already changed)
-            if ($vid->getUser() === $this) {
-                $vid->setUser(null);
-            }
-        }
-
         return $this;
     }
 

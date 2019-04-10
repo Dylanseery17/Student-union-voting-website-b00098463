@@ -36,6 +36,22 @@ class ProposedPollController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $uploads_directory = $this->getParameter('uploads_directory');
+            $file = $request->files->get('proposed_poll')['Upload_Image'];
+            $img = [];
+            foreach($file as $files){
+                $filename = md5(uniqid()) . '.' . 'jpg';
+                if($files == null){
+                }else{
+                    $files->move(
+                        $uploads_directory,
+                        $filename
+                    );
+                    array_push($img, '/Uploads/'.$filename);
+                    var_dump($img);
+                }
+                $proposedPoll->setImage($img);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($proposedPoll);
             $entityManager->flush();
@@ -86,6 +102,22 @@ class ProposedPollController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $uploads_directory = $this->getParameter('uploads_directory');
+            $file = $request->files->get('proposed_poll')['Upload_Image'];
+            $img = [];
+            foreach($file as $files){
+                $filename = md5(uniqid()) . '.' . 'jpg';
+                if($files == null){
+                }else{
+                    $files->move(
+                        $uploads_directory,
+                        $filename
+                    );
+                    array_push($img, '/Uploads/'.$filename);
+                    var_dump($img);
+                }
+                $proposedPoll->setImage($img);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('proposed_poll_index', [
@@ -100,7 +132,7 @@ class ProposedPollController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="proposed_poll_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="proposed_poll_delete", methods={"DELETE"})
      */
     public function delete(Request $request, ProposedPoll $proposedPoll): Response
     {
@@ -110,6 +142,6 @@ class ProposedPollController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('proposed_poll_index');
+        return $this->redirectToRoute('admin_proposed_index');
     }
 }

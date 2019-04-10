@@ -108,23 +108,7 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/admin", name="admin")
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function admin(UserRepository $userRepository , PollRepository $pollRepository  , ProposedPollRepository $proposedPollRepository , VoteRepository $voteRepository): Response
-    {
-        $users = $userRepository->findAll();
 
-        return $this->render('admin/admin.html.twig', [
-            'polls' => $pollRepository->findAll(),
-            'users' =>  $users,
-            'polls_count' => count($pollRepository->findAll()),
-            'proposed_count' => count($proposedPollRepository->findAll()),
-            'vote_count' => count($voteRepository->findAll()),
-            'users_count' =>  count($users),
-        ]);
-    }
 
 //    /**
 //     * Link to this controller to start the "connect" process
