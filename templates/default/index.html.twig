@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}TUD POLLING{% endblock %}
 
 {% block body %}
     <div id="jumbo" class="jumbotron jumbotron-fluid" style="height:100vh; overflow: hidden;">
@@ -57,7 +57,7 @@
                             <div class="card-header">
                                 {{ poll.Name }}
                             </div>
-                            <img class="card-img-top" src="{{ poll.Image }}"  style="height: 150px;  object-fit:cover;" alt="Card image cap">
+                            <img class="card-img-top" src="{{ poll.Image|first }}"  style="height: 150px;  object-fit:cover;" alt="Card image cap">
                             <div class="card-body"> <p id="timer4" class="timer">{{ poll.enddate|date('d/m/Y') }}</div>
                         </div>
                     </a>
@@ -79,7 +79,7 @@
                             <div class="card-header">
                                 {{ endpoll.Name }}
                             </div>
-                            <img class="card-img-top" src="{{ endpoll.Image }}"  style="height: 150px;  object-fit:cover;" alt="Card image cap">
+                            <img class="card-img-top" src="{{ endpoll.Image|first }}"  style="height: 150px;  object-fit:cover;" alt="Card image cap">
                             <div class="card-body"> <p id="timer4" class="timer">{{ endpoll.enddate|date('d/m/Y') }}</div>
                         </div>
                     </a>
@@ -108,6 +108,54 @@
             </div>
         </div>
     </div>
+
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div class="container-fluid" style="background-color: #EEEEEE; margin-top:-35px;">
+        <div class="row" style="padding-top: 40px;">
+            <div class="col-lg-6">
+                <center>
+                <img src="Images/Default/TUD_LOGO.png"  style="height:125px;">
+                </center>
+                <br>
+                <h4 class="font-weight-lighter text-center" >Create a proposed poll</h4> <br> <hr>
+                <p class="text-center">Create a proposed poll and if the poll reaches 50 supports <br> from other members the poll will receive and end date and <br> be
+                    made active by an admin.</p> <hr>
+            </div>
+            <div class="col-lg-5">
+                {{ include('proposed_poll/_form.html.twig') }}
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+        <hr>
+    </div>
+    {% endif %}
+
+
+    <div class="container">
+        <br><br>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Proposed Polls</li>
+        </ol>
+
+        <div class="row">
+            {% for proposed_poll in proposed_polls %}
+                <div class="col-md-3">
+                    <a href="{{ path('proposed_poll_show', {'id': proposed_poll.id}) }}" style="white-space:nowrap; text-decoration: none; color: black;">
+                        <div class="card" style="overflow: hidden;">
+                            <div class="card-header">
+                                {{ proposed_poll.Name }}
+                            </div>
+                            <img class="card-img-top" src="{{ proposed_poll.Image|first }}"  style="height: 150px;  object-fit:cover;" alt="Card image cap">
+                            <div class="card-body">{{ proposed_poll.Support }} Supporters </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
 
 
     <script>

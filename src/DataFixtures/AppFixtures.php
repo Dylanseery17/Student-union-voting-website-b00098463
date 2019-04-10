@@ -15,7 +15,7 @@ class AppFixtures extends Fixture
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    private function createUser($username, $plainPassword,$firstname,$lasname,$age,$StudentNo,$Email,$Telephone,$Add1,$Add2,$City,$County,$Created,$roles = ['ROLE_USER']):User
+    private function createUser($username, $plainPassword, $Profile, $firstname,$lasname,$age,$StudentNo,$Email,$Telephone,$Add1,$Add2,$City,$County,$Created,$roles = ['ROLE_USER']):User
     {
         $user = new User();
         $user->setUsername($username);
@@ -33,18 +33,23 @@ class AppFixtures extends Fixture
         $user->setCity($City);
         $user->setCounty($County);
         $user->setDatecreated($Created);
+        $user->setImage($Profile);
         $user->setRoles($roles);
         return $user;
     }
+
+
 
     public function load(ObjectManager $manager)
     {
         // create objects
 
-        $User = $this->createUser('dylan', 'seery', 'Dylan', 'Seery','20','B00098463','Dylanseery98outlook.ie','0852368369','123 Slick road' ,'Finglas South' ,'Finglas', 'Dublin' , new \DateTime(),['ROLE_ADMIN'] );
-        $Useruser = $this->createUser('abbie', 'seery', 'Dylan', 'Seery','20','B00098463','Dylanseery98outlook.ie','0852368369','123 Slick road' ,'Finglas South' ,'Finglas', 'Dublin' , new \DateTime());
+        $User = $this->createUser('dylan', 'seery', 'https://avatars0.githubusercontent.com/u/32263323?s=460&v=4','Dylan', 'Seery','20','B00098463','Dylanseery98outlook.ie','0852368369','123 Slick road' ,'Finglas South' ,'Finglas', 'Dublin' , new \DateTime(),['ROLE_ADMIN'] );
+        $Useruser = $this->createUser('user', 'user', '' ,'user', 'user','user','user','user','user','user' ,'user' ,'user', 'user' , new \DateTime());
+        $admin = $this->createUser('admin', 'admin', '' ,'admin', 'admin','admin','admin','admin','admin','admin' ,'admin' ,'admin', 'admin' , new \DateTime());
         $manager->persist($User);
         $manager->persist($Useruser);
+        $manager->persist($admin);
 
         $manager->flush();
     }

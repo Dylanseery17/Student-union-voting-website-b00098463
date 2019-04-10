@@ -87,6 +87,23 @@ class VoteRepository extends ServiceEntityRepository
             ;
     }
 
+    public function countByAnsByDate($value , $time , $ans)
+    {
+
+        return $this->createQueryBuilder('v')
+            ->select('v.Choice')
+            ->leftJoin('v.Poll','p')
+            ->where('p.id = :val')
+            ->setParameter('val', $value)
+            ->andwhere('v.Choice = :ans')
+            ->setParameter('ans', $ans)
+            ->andwhere('v.Time = :vals')
+            ->setParameter('vals', $time)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     /*
     public function findOneBySomeField($value): ?Vote
     {

@@ -3,11 +3,19 @@
 {% block title %}Edit Poll{% endblock %}
 
 {% block body %}
-    <h1>Edit Poll</h1>
+<body style="background-color: #EEEEEE">
+<div class="container-fluid" style="padding: 50px;">
+    <div class="row">
+        <div class="col-lg-8"  style="margin: 0 auto;  padding:25px; background-color: white; border-radius: 5px;">
+        <h1>Edit Poll</h1>
 
-    {{ include('poll/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('poll/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('poll_index') }}">back to list</a>
+        <a href="{{ path('poll_index') }}">back to list</a>
 
-    {{ include('poll/_delete_form.html.twig') }}
+        {{ include('poll/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+</body>
 {% endblock %}

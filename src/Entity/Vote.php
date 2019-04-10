@@ -35,7 +35,7 @@ class Vote
     private $Choice;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $Time;
 

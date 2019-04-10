@@ -54,7 +54,7 @@
                 <br>
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                {% if voted <= 1 %}
+                {% if voted >= 1 %}
                     <div class="alert alert-success" role="alert">
                         You can't vote twice  <a href="{{ path('poll_show', {'id': poll.id}) }}" class="alert-link">View The Results</a> or <a href="{{url('poll_index')}}" class="alert-link">Discover more polls</a>
                     </div>

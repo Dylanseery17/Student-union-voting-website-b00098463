@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ proposed_poll.Name }}{% endblock %}
+
+{% block body %}
+    <body style="background-color: #EEEEEE">
+    <div class="container-fluid" style="padding: 50px;">
+        <div class="row">
+            <div class="col-12 col-md-10"  style="margin: 0 auto;  padding:25px; background-color: white; border-radius: 5px;">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div id="carouselFadeExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+                            <div class="carousel-inner" role="listbox">
+                                {% for image in proposed_poll.Image %}
+                                    <div {% if loop.index0 == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
+                                        <img class="d-block w-100" alt="{{ image }}" src="{{ image }}"/>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselFadeExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselFadeExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="text-align: center">
+                        <h1>{{ proposed_poll.name }}</h1>
+                        <br>
+                        <br>
+                        <hr>
+                        <h5>Number of supports : {{ proposed_poll.support }}</h5>
+                        <hr>
+                        <br>
+                        <br>
+                        {{ include('proposed_poll/_support_form.html.twig') }}
+                    </div>
+                </div>
+                <br>
+
+                <br>
+
+                <h5>Description</h5>
+                <p>{{ proposed_poll.description }}</p>
+
+                <br>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </body>
+
+    <script src="/Javascript/Profilename.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+{% endblock %}

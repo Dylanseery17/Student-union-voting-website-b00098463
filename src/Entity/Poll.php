@@ -54,6 +54,13 @@ class Poll
      */
     private $Description;
 
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $startdate;
+
+
     /**
      * @ORM\Column(type="datetime")
      */
@@ -188,6 +195,18 @@ class Poll
     public function setDescription(string $Description): self
     {
         $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getStartdate(): ?\DateTimeInterface
+    {
+        return $this->startdate;
+    }
+
+    public function setStartdate(\DateTimeInterface $startdate): self
+    {
+        $this->startdate = $startdate;
 
         return $this;
     }

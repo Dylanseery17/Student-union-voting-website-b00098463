@@ -105,6 +105,7 @@ class User implements UserInterface
      */
     private $Image;
 
+
     public function __construct()
     {
         $this->vid = new ArrayCollection();
@@ -359,4 +360,5 @@ class User implements UserInterface
 
         return $this;
     }
+
 }

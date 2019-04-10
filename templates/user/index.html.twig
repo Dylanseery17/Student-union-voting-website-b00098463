@@ -20,7 +20,8 @@
                 <div class="input-group mb-3" style="">
                     <input type="text" class="form-control" id="Search" placeholder="Search by username" onkeyup="Search()" aria-label="" aria-describedby="basic-addon1">
                 </div>
-                <table class="table" id="user_table" style="">
+                <div style="overflow:scroll; height: 450px;">
+                <table class="table" id="user_table">
                     <thead class="thead-dark">
                     <tr>
                         <th>Id</th>
@@ -28,7 +29,6 @@
                         <th>Roles</th>
                         <th>Firstname</th>
                         <th>Lastname</th>
-                        <th>Age</th>
                         <th>StudentNumber</th>
                         <th>Datecreated</th>
                         <th>actions</th>
@@ -42,7 +42,6 @@
                             <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                             <td>{{ user.Firstname }}</td>
                             <td>{{ user.Lastname }}</td>
-                            <td>{{ user.Age }}</td>
                             <td>{{ user.StudentNumber }}</td>
                             <td id="dateCreated">{{ user.Datecreated ? user.Datecreated|date('Y-m-d') : '' }}</td>
                             <td>
@@ -60,6 +59,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     </div>

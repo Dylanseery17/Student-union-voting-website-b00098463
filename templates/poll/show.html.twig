@@ -92,18 +92,28 @@
             {% else %}
             <div class="row">
                 <div class="col-lg-6" style="padding: 50px;">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#!">Pie Chart</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#!">Bar Chart</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#!">Line Chart</a>
-                        </li>
-                    </ul>
-                <canvas id="myChart" width="100%" height="100%"></canvas>
+                    <div class="panel with-nav-tabs panel-default">
+                        <div class="panel-heading">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a class="nav-link active" href="#tab1default" data-toggle="tab">Pie Chart</a></li>
+                                <li><a class="nav-link" href="#tab2default" data-toggle="tab">Bar Chart</a></li>
+                                <li><a class="nav-link" href="#tab3default" data-toggle="tab">Line Chart</a></li>
+                            </ul>
+                        </div>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab1default">
+                                    <canvas id="myChart" width="100%" height="100%"></canvas>
+                                </div>
+                                <div class="tab-pane" id="tab2default">
+                                    <canvas id="myBarChart" width="100%" height="100%"></canvas>
+                                </div>
+                                <div class="tab-pane" id="tab3default">
+                                    <canvas id="myLineChart" width="100%" height="100%"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6" style="padding: 50px;">
                     <div style="position: relative; top: 50%; transform: translateY(-50%);">
@@ -186,5 +196,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="/Javascript/PollResults.js"></script>
 <script>f({{ ans|json_encode|raw }} , {{ label|json_encode|raw }});</script>
+<script>L({{ daysBetween|json_encode|raw }} , {{ votesOvertime|json_encode|raw }} , {{ answers }} , {{ Numberofdays }} , {{ label|json_encode|raw }} );</script>
 <script src="/Javascript/Countdown.js"></script>
 {% endblock %}

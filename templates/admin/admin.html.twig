@@ -1,0 +1,154 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid" style="background-image: url('Images/Default/Jumbo_admin.png'); background-size: cover; color:white;">
+        <div class="container">
+            <h1 class="display-3">Admin Panel</h1>
+            <p class="lead">{{ app.user.Firstname }} {{ app.user.Lastname }}</p>
+            <p class="lead">
+                <a class="btn btn-primary " href="{{ path('user_index') }}" role="button">User panel</a>
+                <a class="btn btn-primary " href="Jumbo action link" role="button">Poll panel</a>
+            </p>
+        </div>
+    </div>
+
+    <div style="height: 5vh;"></div>
+
+    <div class="container">
+        <h1 class="h3 mb-0">Admin Panel</h1><br>
+        <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <a  href="{{ path('user_index') }}" style="text-decoration: none; color:black;">
+                <div class="card border-left-success">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Users</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ users_count }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-user fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div> </a>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Polls</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ polls_count }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-poll fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Proposed Polls</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ proposed_count }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-poll-h fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Votes</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ vote_count }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-vote-yea fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#<div class="container">#}
+        {#<div class="row">#}
+            {#<div class="col-md-6">#}
+                {#<h4>Users <span class="badge badge-primary">New</span></h4><br>#}
+                {#<div style="overflow:scroll; height: 250px;">#}
+                    {#<table class="table">#}
+                        {#<thead class="thead-dark">#}
+                        {#<tr>#}
+                            {#<th>id</th>#}
+                            {#<th>First Name</th>#}
+                            {#<th>Last Name</th>#}
+                            {#<th>Action</th>#}
+                        {#</tr>#}
+                        {#</thead>#}
+                        {#<tbody>#}
+                        {#{% for user in users %}#}
+                            {#<tr>#}
+                                {#<td>{{ user.id }}</td>#}
+                                {#<td>{{ user.Firstname }}</td>#}
+                                {#<td>{{ user.Lastname }}</td>#}
+                                {#<td>#}
+
+                                    {#<div class="btn-group" role="group">#}
+                                        {#<a role="button" class="btn btn-primary" href="{{ path('user_show', {'id': user.id}) }}">Show</a>#}
+                                        {#<a role="button" class="btn btn-primary" href="{{ path('user_edit', {'id': user.id}) }}">Edit</a>#}
+                                        {#{{ include('user/_delete_form.html.twig') }}#}
+                                    {#</div>#}
+                                {#</td>#}
+                            {#</tr>#}
+                        {#{% endfor %}#}
+                        {#</tbody>#}
+                    {#</table>#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="col-md-6">#}
+                {#<h4>Polls <span class="badge badge-primary">New</span></h4><br>#}
+                {#<div style="overflow:scroll; height: 250px;">#}
+                    {#<table class="table">#}
+                        {#<thead class="thead-dark">#}
+                        {#<tr>#}
+                            {#<th>id</th>#}
+                            {#<th>Name</th>#}
+                            {#<th>Action</th>#}
+                        {#</tr>#}
+                        {#</thead>#}
+                        {#<tbody>#}
+                        {#{% for poll in polls %}#}
+                            {#<tr>#}
+                                {#<td>{{ poll.id }}</td>#}
+                                {#<td>{{ poll.Name }}</td>#}
+                                {#<td>#}
+
+                                    {#<div class="btn-group" role="group">#}
+                                        {#<a role="button" class="btn btn-primary" href="{{ path('poll_show', {'id': poll.id}) }}">Show</a>#}
+                                        {#<a role="button" class="btn btn-primary" href="{{ path('poll_edit', {'id': poll.id}) }}">Edit</a>#}
+                                        {#{{ include('poll/_delete_form.html.twig') }}#}
+                                    {#</div>#}
+                                {#</td>#}
+                            {#</tr>#}
+                        {#{% endfor %}#}
+                        {#</tbody>#}
+                    {#</table>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+
+{% endblock %}

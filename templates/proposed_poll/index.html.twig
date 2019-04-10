@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Poll index{% endblock %}
+
+{% block body %}
+    <style>
+        #TabMobile{
+            display:none;
+        }
+        #Filter{
+            background-color: white;
+            border-radius: 10px;
+            padding:25px;
+            padding:25px;
+        }
+        @media only screen and (max-width: 990px) {
+            #TabMobile {
+                display: block;
+            }
+            #Laptop{
+                display: none;
+            }
+            #Filter{
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    <body style="background-color: #EEEEEE">
+    <div class="container-fluid" style="padding: 50px;">
+        <div class="row" style="">
+            <div class="col-lg-3" id="Filter">
+                <div class="shadow-sm p-3 mb-5 bg-light rounded">
+                    Filter By
+                </div>
+            </div>
+
+
+            <div class="col-lg-1" style="">
+
+            </div>
+
+            <div class="col-lg-8" style="background-color: white; border-radius: 10px; padding:25px;">
+                <div class="shadow-sm p-3 mb-5 bg-light rounded">
+                    Student Polls
+                </div>
+
+                {% for proposed_poll in proposed_polls %}
+
+                    <div id="Laptop" style="">
+                        <div class="card-group" style="height: 250px; overflow: hidden;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ proposed_poll.Name }}</h4>
+                                    <p class="card-text" style="height: 100px; overflow: hidden">Number of supports : {{ proposed_poll.support }}</p>
+                                    <a name="" id="" class="btn btn-outline-primary btn-block" href="{{ path('proposed_poll_show', {'id': proposed_poll.id}) }}" role="button">View Poll</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img class="card-img" src="{{ proposed_poll.Image|first }}" alt="Card image" style="height:100%; white-space: nowrap">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="TabMobile" style="">
+                        <center>
+                            <a href="{{ path('proposed_poll_show', {'id': proposed_poll.id}) }}" style="text-decoration: none; ">
+                                <div class="card" style="height: 20%; width: 80%; background-color: black">
+
+                                    <img class="card-img" src="{{ proposed_poll.Image|first }}" alt="Card image"  style="height:100%; opacity: 0.5;">
+                                    <div class="card-img-overlay" style="color: white; position: absolute">
+                                        <h3 class="card-header">{{ proposed_poll.Name }}</h3>
+                                        <br><br>
+                                        <p class="card-text" style="bottom: 0;">{{ proposed_poll.Description }}</p>
+                                    </div>
+                                </div></a>
+                        </center>
+                    </div>
+
+                    <br>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+
+            </div>
+            <div class="col-xl-8" >
+                <br>
+                <br>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {#<h1>Poll index</h1>#}
+
+    {#<table class="table">#}
+    {#<thead>#}
+    {#<tr>#}
+    {#<th>Id</th>#}
+    {#<th>Name</th>#}
+    {#<th>Image</th>#}
+    {#<th>Options</th>#}
+    {#<th>Description</th>#}
+    {#<th>Enddate</th>#}
+    {#<th>actions</th>#}
+    {#</tr>#}
+    {#</thead>#}
+    {#<tbody>#}
+    {#{% for poll in polls %}#}
+    {#<tr>#}
+    {#<td>{{ poll.id }}</td>#}
+    {#<td>{{ poll.Name }}</td>#}
+    {#<td>{{ poll.Image }}</td>#}
+    {#<td>{{ poll.Options ? poll.Options|json_encode : '' }}</td>#}
+    {#<td>{{ poll.Description }}</td>#}
+    {#<td>{{ poll.enddate ? poll.enddate|date('Y-m-d H:i:s') : '' }}</td>#}
+    {#<td>#}
+    {#<a href="{{ path('poll_show', {'id': poll.id}) }}">show</a>#}
+    {#<a href="{{ path('poll_edit', {'id': poll.id}) }}">edit</a>#}
+    {#</td>#}
+    {#</tr>#}
+    {#{% else %}#}
+    {#<tr>#}
+    {#<td colspan="7">no records found</td>#}
+    {#</tr>#}
+    {#{% endfor %}#}
+    {#</tbody>#}
+    {#</table>#}
+
+    {#<a href="{{ path('poll_new') }}">Create new</a>#}
+    </body>
+{% endblock %}

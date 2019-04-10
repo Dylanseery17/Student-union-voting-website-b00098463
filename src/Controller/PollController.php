@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Form\VoteType;
 use App\Repository\VoteRepository;
 use App\Repository\PollRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\Comments;
 use App\Form\CommentsType;
 use App\Repository\CommentsRepository;
@@ -38,6 +39,7 @@ class PollController extends AbstractController
 
     /**
      * @Route("/vote/{id}", name="poll_vote", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function vote(UserInterface $userz , Request $request , SessionInterface $session, Poll $poll ,PollRepository $pollRepository , VoteRepository $voteRepository): Response
     {
@@ -183,6 +185,27 @@ class PollController extends AbstractController
             ]);
         }
 
+        $cpoll = $manager->getRepository('App:Poll')->find($poll);
+
+        $start_date = $cpoll->getStartdate();
+        $start_date = $start_date->format('Y-m-d');
+
+        $end_date = $cpoll->getEnddate();
+        $end_date = $end_date->format('Y-m-d');
+        $date = new \DateTime();
+        $now = new \DateTime($start_date);
+
+        $interval = $now->diff($date);
+        $days = $interval->format('%a');
+
+        $dates = [];
+        for($i=0; $i < $days; $i++){
+            $day = date('Y-m-d', strtotime(''.$i.' days', strtotime($start_date)));
+            array_push($dates, $day);
+        }
+
+        $dates_value = [];
+
 
         $find = array_unique($find, SORT_REGULAR);
         $count = count($find);
@@ -195,7 +218,21 @@ class PollController extends AbstractController
 
             array_push($votes, $counta);
         }
-
+//        Getting votes over dates for each answer
+        foreach($find as $ans){
+            $i =0;
+            //This took to longggggggggggggggg
+            foreach($dates as $date){
+                $quests = $voteRepository->countByAnsByDate($poll ,$date ,$ans);
+                if($i>0){
+                $last = count($quests) + end($dates_value);
+                }else{
+                $last = count($quests);
+                }
+                $i = $i + 1;
+                array_push($dates_value, $last);
+            }
+        }
         $display = [];
         for($i=0; $i < $count; $i++){
 
@@ -217,6 +254,7 @@ class PollController extends AbstractController
         return $this->render('poll/show.html.twig', [
             'poll' => $poll,
             'count' => $countx,
+            'answers' => $count,
             'label' => $find,
             'ans' => $votes,
             'expired' => $expired,
@@ -224,6 +262,9 @@ class PollController extends AbstractController
             'comments_count' => $comment_count,
             'form' => $form->createView(),
             'display' => $display,
+            'daysBetween' => $dates,
+            'Numberofdays' => $days,
+            'votesOvertime' => $dates_value,
         ]);
     }
 
