@@ -44,15 +44,16 @@ class ProposedPoll
     private $Support;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\OneToMany(targetEntity="App\Entity\Support", mappedBy="Proposed")
      */
-    private $Users = [];
+    private $Poll;
 
 
     public function __construct()
     {
         $this->Users = new ArrayCollection();
         $this->Support = 0;
+        $this->Poll = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -120,14 +121,34 @@ class ProposedPoll
         return $this;
     }
 
-    public function getUsers(): ?array
+
+    /**
+     * @return Collection|Support[]
+     */
+    public function getPoll(): Collection
     {
-        return $this->Users;
+        return $this->Poll;
     }
 
-    public function setUsers(array $Users): self
+    public function addPoll(Support $poll): self
     {
-        $this->Users = $Users;
+        if (!$this->Poll->contains($poll)) {
+            $this->Poll[] = $poll;
+            $poll->setProposed($this);
+        }
+
+        return $this;
+    }
+
+    public function removePoll(Support $poll): self
+    {
+        if ($this->Poll->contains($poll)) {
+            $this->Poll->removeElement($poll);
+            // set the owning side to null (unless already changed)
+            if ($poll->getProposed() === $this) {
+                $poll->setProposed(null);
+            }
+        }
 
         return $this;
     }

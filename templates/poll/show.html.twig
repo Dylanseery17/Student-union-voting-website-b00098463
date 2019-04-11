@@ -37,7 +37,14 @@
                     <h5 id="Timer" class="text-lg-center"></h5>
                     <hr>
                     <br>
-                    <a name="" id="" class="btn btn-primary" href="{{ path('poll_vote', {'id': poll.id}) }}" role="button">Vote now</a>
+
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a name="" id="" class="btn btn-primary" href="{{ path('poll_vote', {'id': poll.id}) }}" role="button">Vote now</a>
+                        {% else %}
+                            <div class="alert alert-warning" role="alert">
+                                You can't vote if your not logged in!  <a href="{{url('app_login')}}" class="alert-link">Login now</a> or <a href="{{url('app_register')}}" class="alert-link">Sign up</a>
+                            </div>
+                        {% endif %}
                     {% endif %}
                     {% if expired == 1 %}
                         <div class="alert alert-success" role="alert">
@@ -79,6 +86,8 @@
 
             <br>
 
+            {% if expired == 1 %}
+            {% else %}
             {% if count == 0 %}
             <div class="row">
                 <div class="col-lg-10"  style="margin: 0 auto;">
@@ -117,7 +126,6 @@
                 </div>
                 <div class="col-lg-6" style="padding: 50px;">
                     <div style="position: relative; top: 50%; transform: translateY(-50%);">
-
                     {% for type, items in display %}
 
                         {% for key, value in items %}
@@ -127,7 +135,7 @@
                             {% endif %}
                             {% if value matches '/^\\d+$/' %}
                                 <div class="progress" style="height: 30px;">
-                                    <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="{{ value }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ value }}%">{{ value }}%</div>
+                                    <div {% if value >= 50 %}class="progress-bar progress-bar-striped bg-success"{% else %}class="progress-bar bg-secondary"{% endif %} role="progressbar" aria-valuenow="{{ value }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ value }}%">{{ value }}%</div>
                                 </div>
                                 <br>
                             {% endif %}
@@ -139,22 +147,22 @@
             </div>
 
             {% endif %}
+            {% endif %}
 
 
 
             <div class="row">
                 <div class="col-lg-10" style="margin: 0 auto;">
-                    {% if comments_count == 0 %}
-                        <div class="alert alert-info" role="alert">
-                            <h4 class="alert-heading">{{ poll.name }}</h4>
-                            There is currently no comments &#x1F644;. Be the first one to comment &#x1F600;
-                        </div>
+                    {% for comment in comments %}
+                    {% if comment.comment == "" %}
+                    {% set comments_count = comments_count-1 %}
                     {% endif %}
-                    {% if comments_count == 0 %}
-                    {% else %}
-                    <h5>Comments</h5>
+                    {% endfor %}
+                    <h5>Comments <span class="badge badge-info">{{ comments_count }}</span></h5>
                     <hr>
                     {% for comment in comments %}
+                        {% if comment.comment == "" %}
+                        {% else %}
                     <div class="card">
                         <div class="card-header">
                             {% if comment.User.image is null %}
@@ -171,7 +179,16 @@
                         </div>
                     </div>
                     <br>
+                        {% endif %}
                     {% endfor %}
+                    {% if comments_count == 0 %}
+                        <div class="alert alert-info" role="alert">
+                            <h4 class="alert-heading">{{ poll.name }}</h4>
+                            There is currently no comments &#x1F644;. Be the first one to comment &#x1F600;
+                        </div>
+                    {% endif %}
+                    {% if comments_count == 0 %}
+                    {% else %}
                         <hr>
                     {% endif %}
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}

@@ -45,8 +45,8 @@
                                         {% endfor %}
                                     </ul>
                                 </td>
-                                <td>{{ proposed_poll.Support }} Supporters</td>
-                                <th><a role="button" class="btn btn-success" href="{{ path('proposed_poll_show', {'id': proposed_poll.id}) }}">Activate Poll</a></th>
+                                <td {% if proposed_poll.Support >= 20 %} style="color: green;" {% endif %}><strong>{{ proposed_poll.Support }}</strong> Supporters</td>
+                                <th><a role="button" class="btn btn-success" href="{{ path('proposed_poll_activate', {'id': proposed_poll.id}) }}">Activate Poll</a></th>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a role="button" class="btn btn-primary" href="{{ path('proposed_poll_show', {'id': proposed_poll.id}) }}">Show</a>

@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\ProposedPoll;
+use App\Entity\Poll;
 use App\Form\ProposedPollType;
+use App\Form\ActivateProposedPollType;
 use App\Form\ProposedSupport;
 use App\Repository\ProposedPollRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,15 +41,15 @@ class ProposedPollController extends AbstractController
             $uploads_directory = $this->getParameter('uploads_directory');
             $file = $request->files->get('proposed_poll')['Upload_Image'];
             $img = [];
-            foreach($file as $files){
+            foreach ($file as $files) {
                 $filename = md5(uniqid()) . '.' . 'jpg';
-                if($files == null){
-                }else{
+                if ($files == null) {
+                } else {
                     $files->move(
                         $uploads_directory,
                         $filename
                     );
-                    array_push($img, '/Uploads/'.$filename);
+                    array_push($img, '/Uploads/' . $filename);
                     var_dump($img);
                 }
                 $proposedPoll->setImage($img);
@@ -58,8 +60,42 @@ class ProposedPollController extends AbstractController
 
             return $this->redirectToRoute('proposed_poll_index');
         }
+    }
 
-        return $this->render('proposed_poll/new.html.twig', [
+        /**
+         * @Route("/activate/{id}", name="proposed_poll_activate", methods={"GET","POST","DELETE"})
+         */
+    public function activate(Request $request, ProposedPoll $proposedPoll): Response
+    {
+        $poll = new Poll();
+        $form = $this->createForm(ActivateProposedPollType::class, $proposedPoll);
+        $form->handleRequest($request);
+
+        $manager = $this->getDoctrine()->getManager();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $proposed = $manager->getRepository('App:ProposedPoll')->find($proposedPoll);
+
+            $enddate = $form["Enddate"]->getData();
+            var_dump($enddate);
+            $finalenddate = \DateTime::createFromFormat('Y-m-d', $enddate);
+            $poll->setName($proposed->getName());
+            $poll->setOptions($proposed->getOptions());
+            $poll->setStartdate(new \DateTime());
+            $poll->setEnddate($finalenddate);
+            $poll->setDescription($proposed->getDescription());
+            $poll->setImage($proposed->getImage());
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($poll);
+            $entityManager->remove($proposedPoll);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('poll_show', [
+                'id' => $poll->getId(),
+            ]);;
+        }
+
+        return $this->render('proposed_poll/activate.html.twig', [
             'proposed_poll' => $proposedPoll,
             'form' => $form->createView(),
         ]);

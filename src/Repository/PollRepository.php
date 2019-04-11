@@ -44,6 +44,19 @@ class PollRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findByChoice($choice)
+    {
+        $date = new \DateTime();
+
+        return $this->createQueryBuilder('p')
+            ->select('p.Options')
+            ->andWhere('p.id >= :id')
+            ->setParameter('id', $choice)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function findByExpired()
     {
         $date = new \DateTime();

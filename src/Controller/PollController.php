@@ -211,9 +211,9 @@ class PollController extends AbstractController
         $count = count($find);
 
         $votes = [];
-        for($i=0; $i < $count; $i++){
+        foreach($find as $ans){
 
-            $quests = $voteRepository->countByAns($poll ,$find[$i]);
+            $quests = $voteRepository->countByAns($poll ,$ans);
             $counta = count($quests);
 
             array_push($votes, $counta);

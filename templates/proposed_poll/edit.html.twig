@@ -3,11 +3,18 @@
 {% block title %}Edit ProposedPoll{% endblock %}
 
 {% block body %}
+<body style="background-color: #EEEEEE">
+<div class="container-fluid" style="padding: 50px;">
+    <div class="row">
+        <div class="col-lg-8"  style="margin: 0 auto;  padding:25px; background-color: white; border-radius: 5px;">
     <h1>Edit ProposedPoll</h1>
 
     {{ include('proposed_poll/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('proposed_poll_index') }}">back to list</a>
 
-    {{ include('proposed_poll/_delete_form.html.twig') }}
+    {{ include('proposed_poll/_delete_form.html.twig') }}</div>
+    </div>
+</div>
+</body>
 {% endblock %}

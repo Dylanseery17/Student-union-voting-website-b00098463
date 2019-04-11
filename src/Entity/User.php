@@ -100,10 +100,16 @@ class User implements UserInterface
      */
     private $Image;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Support", mappedBy="User")
+     */
+    private $Poll;
+
 
     public function __construct()
     {
         $this->VoteID = new ArrayCollection();
+        $this->Poll = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -320,6 +326,37 @@ class User implements UserInterface
     public function setImage(string $Image): self
     {
         $this->Image = $Image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Support[]
+     */
+    public function getUser(): Collection
+    {
+        return $this->User;
+    }
+
+    public function addUser(Support $user): self
+    {
+        if (!$this->User->contains($user)) {
+            $this->User[] = $user;
+            $user->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePoll(Support $user): self
+    {
+        if ($this->User->contains($user)) {
+            $this->User->removeElement($user);
+            // set the owning side to null (unless already changed)
+            if ($user->getUser() === $this) {
+                $user->setUser(null);
+            }
+        }
 
         return $this;
     }

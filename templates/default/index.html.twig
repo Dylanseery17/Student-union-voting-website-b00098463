@@ -16,7 +16,12 @@
                                 <br> <br> <br>
                                 <h2 class="text-center" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h2>
                                 <br> <br>
-                                <a name="" id="" class="btn btn-primary btn-lg" href="#" role="button">Start Voting</a>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Search Polls" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">Search</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -51,7 +56,7 @@
 
         <div class="row">
             {% for poll in polls %}
-                <div class="col-md-3">
+                <div class="col-md-3" style="padding-bottom: 10px;">
                     <a href="{{ path('poll_show', {'id': poll.id}) }}" style="white-space:nowrap; text-decoration: none; color: black;">
                         <div class="card" style="overflow: hidden;">
                             <div class="card-header">
@@ -73,7 +78,7 @@
 
         <div class="row">
             {% for endpoll in endpolls %}
-                <div class="col-md-3">
+                <div class="col-md-3" style="padding-bottom: 10px;">
                     <a href="{{ path('poll_show', {'id': endpoll.id}) }}" style="white-space:nowrap; text-decoration: none; color: black;">
                         <div class="card" style="overflow: hidden;">
                             <div class="card-header">
@@ -140,7 +145,7 @@
 
         <div class="row">
             {% for proposed_poll in proposed_polls %}
-                <div class="col-md-3">
+                <div class="col-md-3" style="padding-bottom: 10px;">
                     <a href="{{ path('proposed_poll_show', {'id': proposed_poll.id}) }}" style="white-space:nowrap; text-decoration: none; color: black;">
                         <div class="card" style="overflow: hidden;">
                             <div class="card-header">
