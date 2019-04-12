@@ -2,43 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8f9cae2-17d7-45af-80d7-89c1bd44d030" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Student-union-voting-website-b00098463.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Student-union-voting-website-b00098463.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/0513ea44092fae27a92d48eb6ea15b4e.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/0972f2b9ece5156d0e74d803ee0c2122.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/198462b557c33d62dba876c8ab3633ca.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/1f4bfb7919567c1aaa2a948f71a6cd98.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/2b9932acf9b8571ab5f0c50ca8169cd5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/31c8a872f7d36b6cd0ad4cbda6dcbe98.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/442e57d3058cd6866868e9abb0f3c439.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/466004a890366e6d5f25141317a5141f.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/5676843d267a6176425d24eb02b79186.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/589846df4260462b25f66d65a2ad2c67.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/593c183de087fb802802fcb68938d04d.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/65de052df36e453b9e74ec7ac506dcf2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/6bbfd36d5c6b6c2c3de5ca0fcc9f4b97.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/8b658620a8c3aa7c8725c35c3228b2ec.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/9cf9247964ec14c96b02f821a414815d.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/a8b19da7e8a10abac9d6c9ab6f2563f7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/b9261e0cb99cd62837dae8dc63fa2c61.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Uploads/da3a729f1d052669dc8b287c9d6626d8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PollController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PollController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ProposedPollController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProposedPollController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/ProposedPoll.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/ProposedPoll.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/PollRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PollRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/proposed_index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/proposed_index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/poll/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/poll/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/poll/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/poll/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proposed_poll/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proposed_poll/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proposed_poll/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proposed_poll/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/PollController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="236" column="37" selection-start-line="236" selection-start-column="8" selection-end-line="236" selection-end-column="37" />
+            <state relative-caret-position="3723">
+              <caret line="236" column="37" selection-start-line="236" selection-start-column="37" selection-end-line="236" selection-end-column="37" />
               <folding>
                 <element signature="e#34#54#0#PHP" expanded="true" />
               </folding>
@@ -78,56 +51,49 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/ProposedPoll.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="138" selection-start-line="138" selection-end-line="138" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/ProposedPollController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="79" column="61" selection-start-line="79" selection-start-column="57" selection-end-line="79" selection-end-column="62" />
-              <folding>
-                <element signature="e#34#62#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="356" column="21" selection-start-line="356" selection-start-column="21" selection-end-line="356" selection-end-column="21" />
+            <state relative-caret-position="6103">
+              <caret line="363" column="1" selection-start-line="363" selection-start-column="1" selection-end-line="363" selection-end-column="1" />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Repository/ProposedPollRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-102" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/poll/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="163" column="54" selection-start-line="163" selection-start-column="54" selection-end-line="163" selection-end-column="54" />
+            <state relative-caret-position="2805">
+              <caret line="165" column="38" selection-start-line="165" selection-start-column="38" selection-end-line="165" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.env">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="51" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/services.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.env">
+        <entry file="file://$PROJECT_DIR$/src/Controller/RegistrationController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="110" selection-start-line="25" selection-start-column="110" selection-end-line="25" selection-end-column="110" />
+            <state relative-caret-position="204">
+              <caret line="57" column="16" lean-forward="true" selection-start-line="57" selection-start-column="16" selection-end-line="57" selection-end-column="36" />
+              <folding>
+                <element signature="e#34#54#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -135,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/poll/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="44" column="52" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
+            <state relative-caret-position="765">
+              <caret line="45" column="52" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -144,22 +110,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DataFixtures/AppFixtures.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="83" column="278" selection-start-line="83" selection-start-column="264" selection-end-line="83" selection-end-column="278" />
+            <state relative-caret-position="1292">
+              <caret line="83" column="202" selection-start-line="83" selection-start-column="202" selection-end-line="83" selection-end-column="202" />
               <folding>
                 <element signature="e#36#56#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/AdminController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="96" column="45" selection-start-line="96" selection-start-column="29" selection-end-line="96" selection-end-column="45" />
-              <folding>
-                <element signature="e#116#150#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -198,8 +152,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
-        <option value="$PROJECT_DIR$/public/Javascript/Countdown.js" />
         <option value="$PROJECT_DIR$/templates/security/login.html.twig" />
         <option value="$PROJECT_DIR$/templates/registration/register.html.twig" />
         <option value="$PROJECT_DIR$/templates/poll/_delete_form.html.twig" />
@@ -249,6 +201,8 @@
         <option value="$PROJECT_DIR$/templates/poll/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/poll/show.html.twig" />
         <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/config/services.yaml" />
+        <option value="$PROJECT_DIR$/src/Controller/RegistrationController.php" />
       </list>
     </option>
   </component>
@@ -341,6 +295,14 @@
       <path value="$PROJECT_DIR$/vendor/league/oauth2-google" />
       <path value="$PROJECT_DIR$/vendor/symfony/apache-pack" />
       <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/vendor/mtdowling/jmespath.php" />
+      <path value="$PROJECT_DIR$/vendor/aws/aws-sdk-php" />
+      <path value="$PROJECT_DIR$/vendor/behat/transliterator" />
+      <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
+      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/vendor/symfony/templating" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-gaufrette-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/gaufrette" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -372,17 +334,6 @@
             <path>
               <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
               <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="Uploads" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -394,37 +345,7 @@
             <path>
               <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
               <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="DataFixtures" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="poll" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -443,14 +364,14 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dylan\Documents\php\Student-union-voting-website-b00098463\templates\admin" />
+      <recent name="C:\Users\dylan\Documents\php\Student-union-voting-website-b00098463\src\Security" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\dylan\Documents\php\Student-union-voting-website-b00098463\templates\proposed_poll" />
       <recent name="C:\Users\dylan\Documents\php\Student-union-voting-website-b00098463\src\Form" />
       <recent name="C:\Users\dylan\Documents\php\Student-union-voting-website-b00098463\templates\admin" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\dylan\Documents\php\Student-union-voting-website-b00098463\templates\admin" />
-      <recent name="C:\Users\dylan\Documents\php\Student-union-voting-website-b00098463\src\Security" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -502,17 +423,18 @@
       <workItem from="1554467410210" duration="10181000" />
       <workItem from="1554712403456" duration="8567000" />
       <workItem from="1554804866901" duration="57124000" />
+      <workItem from="1555080104770" duration="3134000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221146000" />
+    <option name="totallyTimeSpent" value="224722000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.33282906" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.33812407" />
       <window_info id="Structure" order="1" sideWeight="0.5008606" side_tool="true" weight="0.3214826" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -578,20 +500,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/proposed_poll/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/poll_index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="45" column="11" selection-end-line="108" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/vote_index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-846">
@@ -824,29 +732,18 @@
     <entry file="file://$PROJECT_DIR$/public/Uploads/75022f4ec889d030417db4b52a4b729f.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/Uploads/e05fa2fbe59b06e7519e98a504917d6d.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/Uploads/e05fa2fbe59b06e7519e98a504917d6d.jpg" />
     <entry file="file://$PROJECT_DIR$/public/Uploads/e3f4787ce0319d0d3c1d646394916b6c.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/public/Uploads/07a3bba1a6655260a9355ba4327a444c.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/Uploads/6bbfd36d5c6b6c2c3de5ca0fcc9f4b97.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/Uploads/6bbfd36d5c6b6c2c3de5ca0fcc9f4b97.jpg" />
     <entry file="file://$PROJECT_DIR$/src/Repository/PollRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="393">
           <caret line="51" column="31" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="356" column="21" selection-start-line="356" selection-start-column="21" selection-end-line="356" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -867,33 +764,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/PollController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="236" column="37" selection-start-line="236" selection-start-column="8" selection-end-line="236" selection-end-column="37" />
-          <folding>
-            <element signature="e#34#54#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataFixtures/AppFixtures.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="83" column="278" selection-start-line="83" selection-start-column="264" selection-end-line="83" selection-end-column="278" />
-          <folding>
-            <element signature="e#36#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/poll/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="44" column="52" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/ProposedPollRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-102" />
@@ -909,17 +779,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/PollController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3723">
+          <caret line="236" column="37" selection-start-line="236" selection-start-column="37" selection-end-line="236" selection-end-column="37" />
+          <folding>
+            <element signature="e#34#54#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6103">
+          <caret line="363" column="1" selection-start-line="363" selection-start-column="1" selection-end-line="363" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/poll/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="163" column="54" selection-start-line="163" selection-start-column="54" selection-end-line="163" selection-end-column="54" />
+        <state relative-caret-position="2805">
+          <caret line="165" column="38" selection-start-line="165" selection-start-column="38" selection-end-line="165" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/poll/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="45" column="52" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/AppFixtures.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="83" column="202" selection-start-line="83" selection-start-column="202" selection-end-line="83" selection-end-column="202" />
+          <folding>
+            <element signature="e#36#56#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="110" selection-start-line="25" selection-start-column="110" selection-end-line="25" selection-end-column="110" />
+        <state relative-caret-position="459">
+          <caret line="27" column="51" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/services.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/RegistrationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="57" column="16" lean-forward="true" selection-start-line="57" selection-start-column="16" selection-end-line="57" selection-end-column="36" />
+          <folding>
+            <element signature="e#34#54#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

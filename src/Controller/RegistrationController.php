@@ -11,9 +11,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Aws\Credentials\CredentialProvider;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Aws\Exception\AwsException;
+use Aws\S3\S3Client;
 
 class RegistrationController extends AbstractController
 {
+
+    /**
+     * @var string
+     */
+    private $tmpFolderPath;
+
+    public function setTmpFolderPath(string $tmpFolderPath): void
+    {
+        $this->tmpFolderPath = $tmpFolderPath;
+    }
     /**
      * @Route("/register", name="app_register")
      */
@@ -33,16 +47,36 @@ class RegistrationController extends AbstractController
             if($file == null){
 
             }else{
-                $file->move(
-                    $uploads_directory,
-                    $filename
-                );
 
-                $user->setImage('/ProfilePics/'.$filename);
 
+
+
+            $bucket = getenv('S3_BUCKET');
+            $fileName = md5(uniqid($bucket . '_', false)) . '.'. 'jpg';
+            $user->setImage('/ProfilePics/'.$fileName);
+            $file->move(
+                $this->tmpFolderPath,
+                $fileName
+            );
+
+            try {
+                $s3Client = new S3Client([
+                    'region' => 'us-east-2',
+                    'version' => 'latest',
+                    'credentials' => CredentialProvider::env()
+                ]);
+
+                $s3Client->putObject([
+                    'Bucket'     => $bucket,
+                    'Key'        => $fileName,
+                    'SourceFile' => $this->tmpFolderPath . $fileName,
+                ]);
+
+            } catch (AwsException $e) {
+                echo $e->getMessage() . "\n";
             }
-
-
+            }
+            
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
