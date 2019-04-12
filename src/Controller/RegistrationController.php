@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Aws\Exception\AwsException;
 use Aws\S3\S3Client;
 
+
 class RegistrationController extends AbstractController
 {
 
@@ -42,40 +43,6 @@ class RegistrationController extends AbstractController
             $file = $request->files->get('registration_form')['Upload_Image'];
             $uploads_directory = $this->getParameter('uploads_profile');
 
-            $filename = md5(uniqid()) . '.' . 'jpg';
-
-            if($file == null){
-
-            }else{
-
-
-
-
-            $bucket = getenv('S3_BUCKET');
-            $fileName = md5(uniqid($bucket . '_', false)) . '.'. 'jpg';
-            $user->setImage('/ProfilePics/'.$fileName);
-            $file->move(
-                '/test/',
-                $fileName
-            );
-
-            try {
-                $s3Client = new S3Client([
-                    'region' => 'us-east-2',
-                    'version' => 'latest',
-                    'credentials' => CredentialProvider::env()
-                ]);
-
-                $s3Client->putObject([
-                    'Bucket'     => $bucket,
-                    'Key'        => $fileName,
-                    'SourceFile' => '/test/' . $fileName,
-                ]);
-
-            } catch (AwsException $e) {
-                echo $e->getMessage() . "\n";
-            }
-            }
             
             // encode the plain password
             $user->setPassword(
@@ -84,6 +51,65 @@ class RegistrationController extends AbstractController
                     $form->get('Password')->getData()
                 )
             );
+
+            if($file == null){
+
+            }else {
+
+
+                $bucketName = 'studentunionpolling';
+                $IAM_KEY = 'AKIAQ4NT35YJCXH6LPNC';
+                $IAM_SECRET = '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';
+
+                $fileName = md5(uniqid('studentunionpolling' . '_', false)) . '.' . 'jpg';
+
+                $file->move(
+                    $uploads_directory,
+                    $fileName
+                );
+                // Connect to AWS
+                try {
+                    // You may need to change the region. It will say in the URL when the bucket is open
+                    // and on creation.
+                    $s3 = S3Client::factory(
+                        array(
+                            'credentials' => array(
+                                'key' => $IAM_KEY,
+                                'secret' => $IAM_SECRET
+                            ),
+                            'version' => 'latest',
+                            'region' => 'eu-west-1'
+                        )
+                    );
+                } catch (Exception $e) {
+                    // We use a die, so if this fails. It stops here. Typically this is a REST call so this would
+                    // return a json object.
+                    die("Error: " . $e->getMessage());
+                }
+
+                // For this, I would generate a unqiue random string for the key name. But you can do whatever.
+                $keyName = 'ProfilePic/' . $fileName;
+                $pathInS3 = 'https://s3.eu-west-1.amazonaws.com/' . $bucketName . '/' . $keyName;
+                // Add it to S3
+                try {
+                    // Uploaded:
+                    $file = $fileName;
+                    $s3->putObject(
+                        array(
+                            'Bucket' => $bucketName,
+                            'Key' => $keyName,
+                            'SourceFile' => $uploads_directory .'/'. $fileName,
+                            'StorageClass' => 'REDUCED_REDUNDANCY'
+                        )
+                    );
+                    $user->setImage($pathInS3);
+                } catch (S3Exception $e) {
+                    die('Error:' . $e->getMessage());
+                } catch (Exception $e) {
+                    die('Error:' . $e->getMessage());
+                }
+                echo 'Done';
+            }
 
             $user->setDatecreated(new \DateTime());
 

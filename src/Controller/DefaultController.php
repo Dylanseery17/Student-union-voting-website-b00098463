@@ -21,6 +21,7 @@ use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Form\UserType;
+use Aws\S3\S3Client;
 use Doctrine\ORM\Query;
 
 
@@ -32,6 +33,17 @@ class DefaultController extends AbstractController
      */
     public function index(PollRepository $pollRepository ,Request $request ,ProposedPollRepository $proposedPollRepository): Response
     {
+//        $client = S3Client::factory(array(
+//            'key'    => '<aws access key>',
+//            'secret' => '<aws secret key>'
+//        ));
+//
+//        $images = $client->getIterator('ListObjects', array(
+//            'Bucket' => $bucket,
+//            'Marker' => 'folder1/gallary/',
+//            //I believe marker is what would be use to say only objects in this folder. Not 100% on that.
+//        ));
+
         $result =  $pollRepository->findByEndDate();
         $finished = $pollRepository->findByExpired();
         $proposedPoll = new ProposedPoll();
