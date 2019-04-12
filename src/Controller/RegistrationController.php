@@ -55,7 +55,7 @@ class RegistrationController extends AbstractController
             $fileName = md5(uniqid($bucket . '_', false)) . '.'. 'jpg';
             $user->setImage('/ProfilePics/'.$fileName);
             $file->move(
-                $this->tmpFolderPath,
+                '/test/',
                 $fileName
             );
 
@@ -69,7 +69,7 @@ class RegistrationController extends AbstractController
                 $s3Client->putObject([
                     'Bucket'     => $bucket,
                     'Key'        => $fileName,
-                    'SourceFile' => $this->tmpFolderPath . $fileName,
+                    'SourceFile' => '/test/' . $fileName,
                 ]);
 
             } catch (AwsException $e) {
