@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Entity\ProposedPoll;
 use App\Entity\Poll;
+use App\Entity\Support;
 use App\Form\ProposedPollType;
 use App\Form\ActivateProposedPollType;
 use App\Form\ProposedSupport;
+use App\Repository\SupportRepository;
+use Aws\S3\S3Client;
 use App\Repository\ProposedPollRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,24 +45,82 @@ class ProposedPollController extends AbstractController
             $file = $request->files->get('proposed_poll')['Upload_Image'];
             $img = [];
             foreach ($file as $files) {
-                $filename = md5(uniqid()) . '.' . 'jpg';
+
+                $fileName = md5(uniqid('studentunionpolling' . '_', false)) . '.' . 'jpg';
+
+
                 if ($files == null) {
+
                 } else {
+
+
+                    $bucketName = 'studentunionpolling';
+                    $IAM_KEY = 'AKIAQ4NT35YJCXH6LPNC';
+                    $IAM_SECRET = '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';
+
                     $files->move(
                         $uploads_directory,
-                        $filename
+                        $fileName
                     );
-                    array_push($img, '/Uploads/' . $filename);
-                    var_dump($img);
+                    // Connect to AWS
+                    try {
+                        // You may need to change the region. It will say in the URL when the bucket is open
+                        // and on creation.
+                        $s3 = S3Client::factory(
+                            array(
+                                'credentials' => array(
+                                    'key' => $IAM_KEY,
+                                    'secret' => $IAM_SECRET
+                                ),
+                                'version' => 'latest',
+                                'region' => 'eu-west-1'
+                            )
+                        );
+                    } catch (Exception $e) {
+                        // We use a die, so if this fails. It stops here. Typically this is a REST call so this would
+                        // return a json object.
+                        die("Error: " . $e->getMessage());
+                    }
+
+                    // For this, I would generate a unqiue random string for the key name. But you can do whatever.
+                    $keyName = 'Uploads/' . $fileName;
+                    $pathInS3 = 'https://s3.eu-west-1.amazonaws.com/' . $bucketName . '/' . $keyName;
+
+                    array_push($img, $pathInS3);
+                    // Add it to S3
+                    try {
+                        // Uploaded:
+                        $file = $fileName;
+                        $s3->putObject(
+                            array(
+                                'Bucket' => $bucketName,
+                                'Key' => $keyName,
+                                'SourceFile' => $uploads_directory . '/' . $fileName,
+                                'StorageClass' => 'REDUCED_REDUNDANCY'
+                            )
+                        );
+                    } catch (S3Exception $e) {
+                        die('Error:' . $e->getMessage());
+                    } catch (Exception $e) {
+                        die('Error:' . $e->getMessage());
+                    }
                 }
                 $proposedPoll->setImage($img);
+                echo 'Done';
             }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($proposedPoll);
             $entityManager->flush();
 
-            return $this->redirectToRoute('proposed_poll_index');
+            return $this->redirectToRoute('proposed_poll_show', [
+                'id' => $proposedPoll->getId(),
+            ]);
         }
+        return $this->render('proposed_poll/new.html.twig', [
+            'proposed_poll' => $proposedPoll,
+            'form' => $form->createView(),
+        ]);
     }
 
         /**
@@ -92,7 +153,7 @@ class ProposedPollController extends AbstractController
 
             return $this->redirectToRoute('poll_show', [
                 'id' => $poll->getId(),
-            ]);;
+            ]);
         }
 
         return $this->render('proposed_poll/activate.html.twig', [
@@ -104,23 +165,44 @@ class ProposedPollController extends AbstractController
     /**
      * @Route("/{id}", name="proposed_poll_show" )
      */
-    public function show(Request $request, ProposedPoll $proposedPoll): Response
+    public function show(Request $request, ProposedPoll $proposedPoll ,SupportRepository $supportRepository): Response
     {
+        $support = new Support();
         $form = $this->createForm(ProposedSupport::class, $proposedPoll);
         $form->handleRequest($request);
 
         $manager = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $usr = $_POST['user'];
+            $usr = (int) $usr;
+            $pol = $_POST['poll'];
+            $pol = (int) $pol;
+            $spoll = $manager->getRepository('App:ProposedPoll')->find($pol);
+            $suser = $manager->getRepository('App:User')->find($usr);
             $proposed = $manager->getRepository('App:ProposedPoll')->find($proposedPoll);
+
+            $didyousupport = $supportRepository->findByUser($spoll,$suser);
+            $sup = count($didyousupport);
+
+            if($sup = 1){
+                return $this->redirectToRoute('proposed_poll_show', [
+                    'id' => $proposedPoll->getId(),
+                ]);
+            }
+            if($sup != 1){
+            $support->setProposed($proposed);
+            $support->setUser($suser);
             $proposedPoll = $proposed->setSupport($proposed->getSupport() + 1 );
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($support);
             $entityManager->persist($proposedPoll);
             $entityManager->flush();
 
-            return $this->redirectToRoute('proposed_poll_show', [
-                'id' => $proposedPoll->getId(),
-            ]);
+                return $this->redirectToRoute('proposed_poll_show', [
+                    'id' => $proposedPoll->getId(),
+                ]);
+            }
+
         }
 
         return $this->render('proposed_poll/show.html.twig', [
@@ -142,17 +224,67 @@ class ProposedPollController extends AbstractController
             $file = $request->files->get('proposed_poll')['Upload_Image'];
             $img = [];
             foreach($file as $files){
-                $filename = md5(uniqid()) . '.' . 'jpg';
+
+                $fileName = md5(uniqid('studentunionpolling' . '_', false)) . '.' . 'jpg';
+
+
                 if($files == null){
-                }else{
+
+                }else {
+
+
+                    $bucketName = 'studentunionpolling';
+                    $IAM_KEY = 'AKIAQ4NT35YJCXH6LPNC';
+                    $IAM_SECRET = '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';
+
                     $files->move(
                         $uploads_directory,
-                        $filename
+                        $fileName
                     );
-                    array_push($img, '/Uploads/'.$filename);
-                    var_dump($img);
-                }
-                $proposedPoll->setImage($img);
+                    // Connect to AWS
+                    try {
+                        // You may need to change the region. It will say in the URL when the bucket is open
+                        // and on creation.
+                        $s3 = S3Client::factory(
+                            array(
+                                'credentials' => array(
+                                    'key' => $IAM_KEY,
+                                    'secret' => $IAM_SECRET
+                                ),
+                                'version' => 'latest',
+                                'region' => 'eu-west-1'
+                            )
+                        );
+                    } catch (Exception $e) {
+                        // We use a die, so if this fails. It stops here. Typically this is a REST call so this would
+                        // return a json object.
+                        die("Error: " . $e->getMessage());
+                    }
+
+                    // For this, I would generate a unqiue random string for the key name. But you can do whatever.
+                    $keyName = 'Uploads/' . $fileName;
+                    $pathInS3 = 'https://s3.eu-west-1.amazonaws.com/' . $bucketName . '/' . $keyName;
+
+                    array_push($img, $pathInS3);
+                    // Add it to S3
+                    try {
+                        // Uploaded:
+                        $file = $fileName;
+                        $s3->putObject(
+                            array(
+                                'Bucket' => $bucketName,
+                                'Key' => $keyName,
+                                'SourceFile' => $uploads_directory .'/'. $fileName,
+                                'StorageClass' => 'REDUCED_REDUNDANCY'
+                            )
+                        );
+                    } catch (S3Exception $e) {
+                        die('Error:' . $e->getMessage());
+                    } catch (Exception $e) {
+                        die('Error:' . $e->getMessage());
+                    }
+                }$proposedPoll->setImage($img);
+                echo 'Done';
             }
             $this->getDoctrine()->getManager()->flush();
 

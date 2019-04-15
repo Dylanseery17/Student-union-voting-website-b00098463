@@ -70,6 +70,8 @@ class Poll
     public function __construct()
     {
         $this->Poll = new ArrayCollection();
+
+        $this->startdate = new \DateTime();
         $this->Poll_id = new ArrayCollection();
     }
 

@@ -19,22 +19,20 @@ class SupportRepository extends ServiceEntityRepository
         parent::__construct($registry, Support::class);
     }
 
-    // /**
-    //  * @return Support[] Returns an array of Support objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByUser($poll , $user)
     {
         return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
+            ->leftJoin('s.User','u')
+            ->where('u.id = :user')
+            ->setParameter('user', $user)
+            ->leftJoin('s.Proposed','p')
+            ->andwhere('p.id = :val')
+            ->setParameter('val', $poll)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Support

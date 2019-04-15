@@ -9,7 +9,7 @@
             <div class="col-lg-8"  style="margin: 0 auto;  padding:25px; background-color: white; border-radius: 5px;">
                 <h1>Activate {{ proposed_poll.name }}</h1>
 
-                {{ include('proposed_poll/_activate_form.html.twig', {'button_label': 'Update'}) }}
+                {{ include('proposed_poll/_activate_form.html.twig', {'button_label': 'Activate'}) }}
                 <br>
                 <a href="{{ path('proposed_poll_index') }}" class="btn btn-primary btn-block" roll="button">back to list</a>
             </div>

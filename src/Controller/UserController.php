@@ -12,6 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Aws\Credentials\CredentialProvider;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Aws\Exception\AwsException;
+use Aws\S3\S3Client;
 
 
 /**
@@ -37,18 +41,63 @@ class UserController extends AbstractController
             print_r($file);
             $uploads_directory = $this->getParameter('uploads_profile');
 
-            $filename = md5(uniqid()) . '.' . 'jpg';
-
             if($file == null){
 
-            }else{
-            $file->move(
-                $uploads_directory,
-                $filename
-            );
+            }else {
 
-            $user->setImage('/ProfilePics/'.$filename);
 
+                $bucketName = 'studentunionpolling';
+                $IAM_KEY = 'AKIAQ4NT35YJCXH6LPNC';
+                $IAM_SECRET = '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';
+
+                $fileName = md5(uniqid('studentunionpolling' . '_', false)) . '.' . 'jpg';
+
+                $file->move(
+                    $uploads_directory,
+                    $fileName
+                );
+                // Connect to AWS
+                try {
+                    // You may need to change the region. It will say in the URL when the bucket is open
+                    // and on creation.
+                    $s3 = S3Client::factory(
+                        array(
+                            'credentials' => array(
+                                'key' => $IAM_KEY,
+                                'secret' => $IAM_SECRET
+                            ),
+                            'version' => 'latest',
+                            'region' => 'eu-west-1'
+                        )
+                    );
+                } catch (Exception $e) {
+                    // We use a die, so if this fails. It stops here. Typically this is a REST call so this would
+                    // return a json object.
+                    die("Error: " . $e->getMessage());
+                }
+
+                // For this, I would generate a unqiue random string for the key name. But you can do whatever.
+                $keyName = 'ProfilePic/' . $fileName;
+                $pathInS3 = 'https://s3.eu-west-1.amazonaws.com/' . $bucketName . '/' . $keyName;
+                // Add it to S3
+                try {
+                    // Uploaded:
+                    $file = $fileName;
+                    $s3->putObject(
+                        array(
+                            'Bucket' => $bucketName,
+                            'Key' => $keyName,
+                            'SourceFile' => $uploads_directory .'/'. $fileName,
+                            'StorageClass' => 'REDUCED_REDUNDANCY'
+                        )
+                    );
+                    $user->setImage($pathInS3);
+                } catch (S3Exception $e) {
+                    die('Error:' . $e->getMessage());
+                } catch (Exception $e) {
+                    die('Error:' . $e->getMessage());
+                }
+                echo 'Done';
             }
 
             $user->setPassword(
@@ -93,18 +142,62 @@ class UserController extends AbstractController
             print_r($file);
             $uploads_directory = $this->getParameter('uploads_profile');
 
-            $filename = md5(uniqid()) . '.' . 'jpg';
-
             if($file == null){
 
-            }else{
+            }else {
+
+                $bucketName = 'studentunionpolling';
+                $IAM_KEY = 'AKIAQ4NT35YJCXH6LPNC';
+                $IAM_SECRET = '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';
+
+                $fileName = md5(uniqid('studentunionpolling' . '_', false)) . '.' . 'jpg';
+
                 $file->move(
                     $uploads_directory,
-                    $filename
+                    $fileName
                 );
+                // Connect to AWS
+                try {
+                    // You may need to change the region. It will say in the URL when the bucket is open
+                    // and on creation.
+                    $s3 = S3Client::factory(
+                        array(
+                            'credentials' => array(
+                                'key' => $IAM_KEY,
+                                'secret' => $IAM_SECRET
+                            ),
+                            'version' => 'latest',
+                            'region' => 'eu-west-1'
+                        )
+                    );
+                } catch (Exception $e) {
+                    // We use a die, so if this fails. It stops here. Typically this is a REST call so this would
+                    // return a json object.
+                    die("Error: " . $e->getMessage());
+                }
 
-                $user->setImage('/ProfilePics/'.$filename);
-
+                // For this, I would generate a unqiue random string for the key name. But you can do whatever.
+                $keyName = 'ProfilePic/' . $fileName;
+                $pathInS3 = 'https://s3.eu-west-1.amazonaws.com/' . $bucketName . '/' . $keyName;
+                // Add it to S3
+                try {
+                    // Uploaded:
+                    $file = $fileName;
+                    $s3->putObject(
+                        array(
+                            'Bucket' => $bucketName,
+                            'Key' => $keyName,
+                            'SourceFile' => $uploads_directory .'/'. $fileName,
+                            'StorageClass' => 'REDUCED_REDUNDANCY'
+                        )
+                    );
+                    $user->setImage($pathInS3);
+                } catch (S3Exception $e) {
+                    die('Error:' . $e->getMessage());
+                } catch (Exception $e) {
+                    die('Error:' . $e->getMessage());
+                }
+                echo 'Done';
             }
 
 

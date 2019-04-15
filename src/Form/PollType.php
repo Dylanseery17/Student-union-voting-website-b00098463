@@ -30,7 +30,6 @@ class PollType extends AbstractType
                 'attr' => array('cols' => '5', 'rows' => '5'),
             ))
             ->add('enddate', DateType::class, [
-                'placeholder' => [new \DateTime()]
             ])
         ;
         $builder->get('Options')

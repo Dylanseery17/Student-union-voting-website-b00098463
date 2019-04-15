@@ -1,3 +1,7 @@
 {{ form_start(form) }}
+
+<input type="hidden" name="user" value="{{ app.user.id }}">
+<input type="hidden" name="poll" value="{{ proposed_poll.id }}">
 <button class="btn btn-outline-primary btn-block">{{ button_label|default('Support now') }}</button>
+
 {{ form_end(form) }}

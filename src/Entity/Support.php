@@ -17,12 +17,12 @@ class Support
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Poll")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="User")
      */
     private $User;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ProposedPoll", inversedBy="Poll")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProposedPoll", inversedBy="ProposedPoll")
      */
     private $Proposed;
 
