@@ -12,7 +12,8 @@
                             </div>
                             <div class="col-md-10 text-center" style="padding: 20px;">
                                 <br><br><br><br>
-                                <img src="Images/Default/TUD_WHITE.png" class="img-fluid rounded-top" alt="" style="height:125px;">
+                                <div  class="animated zoomIn delay-1s" >
+                                <img src="Images/Default/TUD_WHITE.png"alt="" style="height:125px;">
                                 <br> <br> <br>
                                 <h2 class="text-center" style="color:white;">A student polling website</h2>
                                 <br> <br>
@@ -22,11 +23,13 @@
                                         <button class="btn btn-primary" type="button">Search</button>
                                     </div>
                                 </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5 text-center" style="height:100vh; background-image: url('Images/Default/Jumbo_index_white.png'); background-size: cover;">
 
+                        <div  class="animated zoomIn delay-2s" >
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                             <div style="height: 17vh;"></div>
                             {% if app.user.image is null %}
@@ -43,6 +46,7 @@
                                 <footer class="blockquote-footer"> <cite title="Source Title">Roald Dahl</cite></footer>
                             </blockquote>
                         {% endif %}
+                          </div>
                     </div>
                 </div>
         </div>

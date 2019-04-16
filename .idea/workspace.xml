@@ -3,23 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e8f9cae2-17d7-45af-80d7-89c1bd44d030" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PollController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PollController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ProposedPollController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProposedPollController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Poll.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Poll.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Support.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Support.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/PollType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/PollType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/SupportRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/SupportRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/default/about.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/about.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/default/people.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/people.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/default/sitemap.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/sitemap.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/poll/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/poll/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proposed_poll/_activate_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proposed_poll/_activate_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proposed_poll/_support_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proposed_poll/_support_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proposed_poll/activate.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proposed_poll/activate.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/poll/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/poll/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/proposed_poll/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proposed_poll/show.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,52 +35,37 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/PollController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="77" column="12" selection-start-line="77" selection-start-column="12" selection-end-line="80" selection-end-column="14" />
-              <folding>
-                <element signature="e#34#54#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Repository/SupportRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-15">
-              <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
+            <state relative-caret-position="170">
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Support.php">
+        <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2">
-              <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+            <state relative-caret-position="-425">
+              <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/poll/show.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="379">
+              <caret line="94" column="16" selection-start-line="94" selection-start-column="16" selection-end-line="94" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/ProposedPollController.php">
+        <entry file="file://$PROJECT_DIR$/templates/default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="186" column="25" selection-start-line="186" selection-start-column="25" selection-end-line="186" selection-end-column="25" />
-              <folding>
-                <element signature="e#34#62#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/proposed_poll/_support_form.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="56" selection-start-line="3" selection-start-column="56" selection-end-line="3" selection-end-column="56" />
+            <state relative-caret-position="-34">
+              <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -101,55 +73,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/proposed_poll/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="35" column="67" selection-start-line="35" selection-start-column="67" selection-end-line="35" selection-end-column="67" />
-              <folding>
-                <element signature="n#style#0;n#a#0;n#h5#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="221">
+              <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="66" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/admin/poll_index.html.twig">
+        <entry file="file://$PROJECT_DIR$/src/Controller/ProposedPollController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="14" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/default/about.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="14" />
+            <state relative-caret-position="223">
+              <caret line="186" column="22" selection-start-line="186" selection-start-column="22" selection-end-line="186" selection-end-column="22" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/default/people.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="4" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="13" selection-end-column="10" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/default/sitemap.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#34#62#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -180,6 +116,7 @@
       <find>Users</find>
       <find>$find</find>
       <find>var_dump</find>
+      <find>logge</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,7 +146,6 @@
         <option value="$PROJECT_DIR$/templates/proposed_poll/_delete_form.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/AdminController.php" />
         <option value="$PROJECT_DIR$/templates/proposed_poll/index.html.twig" />
-        <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/templates/proposed_poll/edit.html.twig" />
         <option value="$PROJECT_DIR$/templates/admin/proposed_index.html.twig" />
         <option value="$PROJECT_DIR$/src/Form/ActivateProposedPollType.php" />
@@ -217,13 +153,11 @@
         <option value="$PROJECT_DIR$/src/Entity/ProposedPoll.php" />
         <option value="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" />
         <option value="$PROJECT_DIR$/src/Repository/PollRepository.php" />
-        <option value="$PROJECT_DIR$/templates/poll/show.html.twig" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/src/Controller/RegistrationController.php" />
         <option value="$PROJECT_DIR$/config/services.yaml" />
         <option value="$PROJECT_DIR$/src/Controller/UserController.php" />
         <option value="$PROJECT_DIR$/templates/proposed_poll/activate.html.twig" />
-        <option value="$PROJECT_DIR$/templates/default/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/poll/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/Entity/Poll.php" />
@@ -233,12 +167,15 @@
         <option value="$PROJECT_DIR$/templates/proposed_poll/_activate_form.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/Support.php" />
         <option value="$PROJECT_DIR$/templates/proposed_poll/_support_form.html.twig" />
-        <option value="$PROJECT_DIR$/src/Repository/SupportRepository.php" />
-        <option value="$PROJECT_DIR$/src/Controller/ProposedPollController.php" />
-        <option value="$PROJECT_DIR$/templates/proposed_poll/show.html.twig" />
         <option value="$PROJECT_DIR$/templates/default/about.html.twig" />
         <option value="$PROJECT_DIR$/templates/default/people.html.twig" />
         <option value="$PROJECT_DIR$/templates/default/sitemap.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/ProposedPollController.php" />
+        <option value="$PROJECT_DIR$/src/Repository/SupportRepository.php" />
+        <option value="$PROJECT_DIR$/templates/base.html.twig" />
+        <option value="$PROJECT_DIR$/templates/default/index.html.twig" />
+        <option value="$PROJECT_DIR$/templates/proposed_poll/show.html.twig" />
+        <option value="$PROJECT_DIR$/templates/poll/show.html.twig" />
       </list>
     </option>
   </component>
@@ -402,6 +339,18 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="default" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="poll" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Student-union-voting-website-b00098463" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Student-union-voting-website-b00098463" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="proposed_poll" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -478,12 +427,12 @@
       <workItem from="1554467410210" duration="10181000" />
       <workItem from="1554712403456" duration="8567000" />
       <workItem from="1554804866901" duration="57124000" />
-      <workItem from="1555080104770" duration="20241000" />
+      <workItem from="1555080104770" duration="22654000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="241829000" />
+    <option name="totallyTimeSpent" value="244242000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -656,23 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="38" column="72" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/default/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="101" column="28" selection-start-line="101" selection-start-column="28" selection-end-line="101" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
@@ -731,13 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/poll/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="74" column="12" selection-start-line="74" selection-start-column="12" selection-end-line="81" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/ProposedPollRepository.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -779,13 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/poll/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="58" column="73" selection-start-line="58" selection-start-column="73" selection-end-line="58" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/proposed_poll/activate.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -800,47 +718,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/PollController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="77" column="12" selection-start-line="77" selection-start-column="12" selection-end-line="80" selection-end-column="14" />
-          <folding>
-            <element signature="e#34#54#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/SupportRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Support.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2">
           <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ProposedPollController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="186" column="25" selection-start-line="186" selection-start-column="25" selection-end-line="186" selection-end-column="25" />
-          <folding>
-            <element signature="e#34#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/proposed_poll/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="35" column="67" selection-start-line="35" selection-start-column="67" selection-end-line="35" selection-end-column="67" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#h5#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -864,7 +745,7 @@
     <entry file="file://$PROJECT_DIR$/templates/default/people.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="4" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="13" selection-end-column="10" />
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="13" selection-end-column="10" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
@@ -878,6 +759,68 @@
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/poll/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="58" column="73" selection-start-line="58" selection-start-column="73" selection-end-line="58" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/PollController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="77" column="12" selection-start-line="77" selection-start-column="12" selection-end-line="80" selection-end-column="14" />
+          <folding>
+            <element signature="e#34#54#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ProposedPollController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="186" column="22" selection-start-line="186" selection-start-column="22" selection-end-line="186" selection-end-column="22" />
+          <folding>
+            <element signature="e#34#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/SupportRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-425">
+          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/default/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/proposed_poll/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="66" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/poll/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="94" column="16" selection-start-line="94" selection-start-column="16" selection-end-line="94" selection-end-column="16" />
         </state>
       </provider>
     </entry>

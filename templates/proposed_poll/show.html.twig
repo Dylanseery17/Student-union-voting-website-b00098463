@@ -41,7 +41,13 @@
                         <hr>
                         <br>
                         <br>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         {{ include('proposed_poll/_support_form.html.twig') }}
+                        {% else %}
+                            <div class="alert alert-warning" role="alert">
+                                You can't support if your not logged in!  <a href="{{url('app_login')}}" class="alert-link">Login now</a> or <a href="{{url('app_register')}}" class="alert-link">Sign up</a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
                 <br>
@@ -52,6 +58,13 @@
                 <p>{{ proposed_poll.description }}</p>
 
                 <br>
+
+                <h5>Options</h5>
+                {% for options in proposed_poll.Options %}
+                <ul class="list-group">
+                    <li class="list-group-item">{{ loop.index }}.   {{ options }}</li>
+                </ul>
+                {% endfor %}
 
                     </div>
                 </div>

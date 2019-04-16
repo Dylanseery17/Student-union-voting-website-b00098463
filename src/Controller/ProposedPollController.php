@@ -184,7 +184,7 @@ class ProposedPollController extends AbstractController
             $didyousupport = $supportRepository->findByUser($spoll,$suser);
             $sup = count($didyousupport);
 
-            if($sup = 1){
+            if($sup == 1){
                 return $this->redirectToRoute('proposed_poll_show', [
                     'id' => $proposedPoll->getId(),
                 ]);

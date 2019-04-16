@@ -86,6 +86,14 @@
 
             <br>
 
+            <h5>Options</h5>
+            {% for options in poll.Options %}
+                <ul class="list-group">
+                    <li class="list-group-item">{{ loop.index }}.   {{ options }}</li>
+                </ul>
+            {% endfor %}
+            <br>
+
             {% if expired == 1 %}
             {% else %}
             {% if count == 0 %}
