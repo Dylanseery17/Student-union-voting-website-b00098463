@@ -8,7 +8,6 @@
             <h1 class="display-3">Admin Panel - Vote Index</h1>
             <p class="lead">{{ app.user.Firstname }} {{ app.user.Lastname }}</p>
             <p class="lead">
-                <a class="btn btn-primary" href="{{ path('vote_new') }}" role="button" style="padding-right: 20px;">Create new vote</a>
                 <a class="btn btn-secondary" href="{{ path('admin') }}" role="button" style="padding-right: 20px;">Back to admin panel</a>
             </p>
         </div>
@@ -49,7 +48,6 @@
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a role="button" class="btn btn-primary" href="{{ path('vote_show', {'id': vote.id}) }}">Show</a>
-                                    <a role="button" class="btn btn-primary" href="{{ path('vote_edit', {'id': vote.id}) }}">Edit</a>
                                     {{ include('vote/_delete_form.html.twig') }}
                                 </div>
                             </td>

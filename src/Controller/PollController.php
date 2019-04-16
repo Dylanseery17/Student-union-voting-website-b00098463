@@ -242,9 +242,18 @@ class PollController extends AbstractController
         $end_date = $cpoll->getEnddate();
         $end_date = $end_date->format('Y-m-d');
         $date = new \DateTime();
+
+        $expire_time =  new \DateTime($end_date);
+
+        if ($expire_time < $date) {
+            $date_end = new \DateTime($end_date);
+        }else{
+            $date_end = new \DateTime();
+        }
+
         $now = new \DateTime($start_date);
 
-        $interval = $now->diff($date);
+        $interval = $now->diff($date_end);
         $days = $interval->format('%a');
 
         $dates = [];
@@ -255,9 +264,13 @@ class PollController extends AbstractController
 
         $dates_value = [];
 
-
         $find = array_unique($find, SORT_REGULAR);
         $count = count($find);
+        $findfixed = [];
+        foreach($find as $ans){
+
+            array_push($findfixed, $ans);
+        }
 
         $votes = [];
         foreach($find as $ans){
@@ -283,20 +296,19 @@ class PollController extends AbstractController
             }
         }
         $display = [];
-        for($i=0; $i < $count; $i++){
+        foreach($find as $ans){
 
-            $quests = $voteRepository->countByAns($poll ,$find[$i]);
+            $quests = $voteRepository->countByAns($poll ,$ans);
             $countd = count($quests);
 
             $countd = $countd / $countx * 100;
             $countd = (int) $countd;
 
             $tmp = array('val'=>$countd);
-            $src = $find[$i];
+            $src = $ans;
             array_push($display, $src);
             array_push($display, $tmp);
         }
-
         $poll_comments = $commentsRepository->findByPoll($poll);
         $comment_count = count($poll_comments);
 
@@ -304,7 +316,7 @@ class PollController extends AbstractController
             'poll' => $poll,
             'count' => $countx,
             'answers' => $count,
-            'label' => $find,
+            'label' => $findfixed,
             'ans' => $votes,
             'expired' => $expired,
             'comments' => $poll_comments,

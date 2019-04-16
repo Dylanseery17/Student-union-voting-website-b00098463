@@ -94,16 +94,20 @@
             {% endfor %}
             <br>
 
-            {% if expired == 1 %}
-            {% else %}
+
+
             {% if count == 0 %}
             <div class="row">
                 <div class="col-lg-10"  style="margin: 0 auto;">
+                {% if expired == 1 %}
                 <div class="alert alert-info" role="alert">
                     <h4 class="alert-heading">{{ poll.name }}</h4>
                     {{ poll.name }} currently has no votes be the first one to vote.
                     <a href="{{ path('poll_vote', {'id': poll.id}) }}" class="alert-link">Vote now</a>
                 </div>
+                {% else %}
+
+                {% endif %}
                 </div>
             </div>
             {% else %}
@@ -154,7 +158,6 @@
                 </div>
             </div>
 
-            {% endif %}
             {% endif %}
 
 

@@ -29,62 +29,12 @@ class VoteController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="vote_new", methods={"GET","POST"})
-     */
-    public function new(Request $request , PollRepository $pollRepository): Response
-    {
-        $vote = new Vote();
-        $form = $this->createForm(VoteType::class, $vote);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $Cho = $_POST['Choice'];
-            $vote->setChoice($Cho);
-            $vote->setTime(new \DateTime());
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($vote);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('vote_index');
-        }
-
-        return $this->render('vote/new.html.twig', [
-            'vote' => $vote,
-            'form' => $form->createView(),
-            'poll' => $pollRepository->findAll(),
-        ]);
-    }
-
-
-    /**
      * @Route("/{id}", name="vote_show", methods={"GET"})
      */
     public function show(Vote $vote): Response
     {
         return $this->render('vote/show.html.twig', [
             'vote' => $vote,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="vote_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Vote $vote): Response
-    {
-        $form = $this->createForm(VoteType::class, $vote);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('vote_index', [
-                'id' => $vote->getId(),
-            ]);
-        }
-
-        return $this->render('vote/edit.html.twig', [
-            'vote' => $vote,
-            'form' => $form->createView(),
         ]);
     }
 

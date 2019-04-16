@@ -171,6 +171,8 @@ class ProposedPollController extends AbstractController
         $form = $this->createForm(ProposedSupport::class, $proposedPoll);
         $form->handleRequest($request);
 
+        $support_poll = $supportRepository->findBy(array('Proposed' => $proposedPoll));
+
         $manager = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
             $usr = $_POST['user'];
@@ -208,6 +210,7 @@ class ProposedPollController extends AbstractController
         return $this->render('proposed_poll/show.html.twig', [
             'proposed_poll' => $proposedPoll,
             'form' => $form->createView(),
+            'supports' => $support_poll,
         ]);
     }
 
