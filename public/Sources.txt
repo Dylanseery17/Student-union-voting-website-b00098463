@@ -1,0 +1,15 @@
+Bootstrap 4
+https://getbootstrap.com/
+Animate Css
+https://daneden.github.io/animate.css/
+Chart js
+https://www.chartjs.org/
+favicon-16x16
+http://www.dit.ie/media/physics/tud.png altered in photoshop
+TUD_LOGO
+http://www.dit.ie/media/physics/tud.png altered in photoshop
+TUD_WHITE
+http://www.dit.ie/media/physics/tud.png altered in photoshop
+ALL OTHER IMAGES IN IMAGES FOLDER CREATED IN PHOTOSHOP
+Test Poll images
+https://unsplash.com/
