@@ -9,12 +9,12 @@ This web applicaton is hosted on [heroku](https://dashboard.heroku.com/).
 
 ## Access levels
 1. Admin
-   - User : Admin
-   - Pass : Admin
+   - User : admin
+   - Pass : admin
    
 2. User
-   - User : User
-   - Pass : User
+   - User : user
+   - Pass : user
 
 ## Main Technologys Used
 1. [Symfony](https://symfony.com/)
@@ -38,10 +38,13 @@ public/UseCases
 ### Use Case diagrams 
 
 >Public use case
+
 ![alt text](https://i.ibb.co/s5VBQM4/Public-usecase.png)
 
 >User use case
+
 ![alt text](https://i.ibb.co/WWDYHrH/User-usecase.png)
 
 >Admin use case
+
 ![alt text](https://i.ibb.co/kKJGstC/Admin-usecase.png)
