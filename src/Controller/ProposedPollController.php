@@ -7,6 +7,7 @@ use App\Entity\Poll;
 use App\Entity\Support;
 use App\Form\ProposedPollType;
 use App\Form\ActivateProposedPollType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Form\ProposedSupport;
 use App\Repository\SupportRepository;
 use Aws\S3\S3Client;
@@ -125,6 +126,7 @@ class ProposedPollController extends AbstractController
 
         /**
          * @Route("/activate/{id}", name="proposed_poll_activate", methods={"GET","POST","DELETE"})
+         * @IsGranted("ROLE_ADMIN")
          */
     public function activate(Request $request, ProposedPoll $proposedPoll): Response
     {
@@ -216,6 +218,7 @@ class ProposedPollController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="proposed_poll_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, ProposedPoll $proposedPoll): Response
     {
@@ -304,6 +307,7 @@ class ProposedPollController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="proposed_poll_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, ProposedPoll $proposedPoll): Response
     {

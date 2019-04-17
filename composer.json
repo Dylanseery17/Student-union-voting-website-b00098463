@@ -82,5 +82,9 @@
             "allow-contrib": false,
             "require": "4.2.*"
         }
+    },
+    "require-dev": {
+        "codeception/codeception": "^2.5",
+        "symfony/test-pack": "^1.0"
     }
 }

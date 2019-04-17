@@ -107,7 +107,16 @@
                         <br>
                         <br>
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        {{ include('proposed_poll/_support_form.html.twig') }}
+
+                         {% for support in supports %}
+                        {% if app.user.username in support.User.username %}
+                            <div class="alert alert-warning" role="alert">
+                                You have already supported {{ proposed_poll.name }} You can't support twice!
+                            </div>
+                        {% else %}
+                        {% endif %}
+                        {% endfor %}
+                            {{ include('proposed_poll/_support_form.html.twig') }}
                         {% else %}
                             <div class="alert alert-warning" role="alert">
                                 You can't support if your not logged in!  <a href="{{url('app_login')}}" class="alert-link">Login now</a> or <a href="{{url('app_register')}}" class="alert-link">Sign up</a>

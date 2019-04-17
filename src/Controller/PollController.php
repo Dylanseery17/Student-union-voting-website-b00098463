@@ -98,6 +98,7 @@ class PollController extends AbstractController
 
     /**
      * @Route("/new", name="poll_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -197,20 +198,27 @@ class PollController extends AbstractController
     public function show(Request $request,Poll $poll,  VoteRepository $voteRepository , CommentsRepository $commentsRepository ,PollRepository $pollRepository ): Response
     {
         $vote = new Vote();
+//        Get all answers in for this poll
         $find = $voteRepository->findByAns($poll);
         $countx = count($find);
+
+
 
 //        Comment Section for Poll
         $comment = new Comments();
         $form = $this->createForm(CommentsType::class, $comment);
         $form->handleRequest($request);
 
+//        Finds out if its expired by count being 1
         $expired = $pollRepository->findByExpiredID($poll);
         $expired = count($expired);
 
         $manager = $this->getDoctrine()->getManager();
+//        Gets all votes for that poll
+        $vote_poll = $voteRepository->findBy(array('Poll' => $poll));
 
         if ($form->isSubmitted() && $form->isValid()) {
+//            hidden inputs user and poll to set for vote entity
             $usr = $_POST['user'];
             $usr = (int) $usr;
             $pol = $_POST['poll'];
@@ -218,7 +226,7 @@ class PollController extends AbstractController
             $cpoll = $manager->getRepository('App:Poll')->find($pol);
             $cuser = $manager->getRepository('App:User')->find($usr);
 
-
+//            Comment being saved and timestaped in db
             $comm = $_POST['comment'];
             $comment->setComment($comm);
             $comment->setUser($cuser);
@@ -233,9 +241,9 @@ class PollController extends AbstractController
                 'id' => $poll->getId(),
             ]);
         }
-
+//        Find the poll
         $cpoll = $manager->getRepository('App:Poll')->find($poll);
-
+//        Compare start date and end date or current date to get days between
         $start_date = $cpoll->getStartdate();
         $start_date = $start_date->format('Y-m-d');
 
@@ -245,6 +253,7 @@ class PollController extends AbstractController
 
         $expire_time =  new \DateTime($end_date);
 
+//        if end day is passed current date
         if ($expire_time < $date) {
             $date_end = new \DateTime($end_date);
         }else{
@@ -256,6 +265,7 @@ class PollController extends AbstractController
         $interval = $now->diff($date_end);
         $days = $interval->format('%a');
 
+//        Array for dates for days difference
         $dates = [];
         for($i=0; $i < $days; $i++){
             $day = date('Y-m-d', strtotime(''.$i.' days', strtotime($start_date)));
@@ -263,7 +273,7 @@ class PollController extends AbstractController
         }
 
         $dates_value = [];
-
+//        Remove unqiue values from find and re write it
         $find = array_unique($find, SORT_REGULAR);
         $count = count($find);
         $findfixed = [];
@@ -271,7 +281,7 @@ class PollController extends AbstractController
 
             array_push($findfixed, $ans);
         }
-
+//      Count votes for each answer
         $votes = [];
         foreach($find as $ans){
 
@@ -295,6 +305,7 @@ class PollController extends AbstractController
                 array_push($dates_value, $last);
             }
         }
+        //Getting Percentage for each answer
         $display = [];
         foreach($find as $ans){
 
@@ -309,15 +320,19 @@ class PollController extends AbstractController
             array_push($display, $src);
             array_push($display, $tmp);
         }
+        //Count comments
         $poll_comments = $commentsRepository->findByPoll($poll);
         $comment_count = count($poll_comments);
 
         return $this->render('poll/show.html.twig', [
             'poll' => $poll,
+            //amount of votes
             'count' => $countx,
             'answers' => $count,
+            //All answers
             'label' => $findfixed,
             'ans' => $votes,
+            //if expired
             'expired' => $expired,
             'comments' => $poll_comments,
             'comments_count' => $comment_count,
@@ -325,12 +340,15 @@ class PollController extends AbstractController
             'display' => $display,
             'daysBetween' => $dates,
             'Numberofdays' => $days,
+            //admin modal
+            'voters' => $vote_poll,
             'votesOvertime' => $dates_value,
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="poll_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Poll $poll): Response
     {
@@ -364,8 +382,6 @@ class PollController extends AbstractController
                     );
                     // Connect to AWS
                     try {
-                        // You may need to change the region. It will say in the URL when the bucket is open
-                        // and on creation.
                         $s3 = S3Client::factory(
                             array(
                                 'credentials' => array(
@@ -421,6 +437,7 @@ class PollController extends AbstractController
 
     /**
      * @Route("/{id}", name="poll_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Poll $poll): Response
     {

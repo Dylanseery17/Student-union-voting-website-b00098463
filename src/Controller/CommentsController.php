@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Comments;
 use App\Form\CommentsType;
+use App\Controller\ProposedPollController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Repository\CommentsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,6 +29,7 @@ class CommentsController extends AbstractController
 
     /**
      * @Route("/new", name="comments_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -54,6 +57,7 @@ class CommentsController extends AbstractController
 
     /**
      * @Route("/{id}", name="comments_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Comments $comment): Response
     {
@@ -64,6 +68,7 @@ class CommentsController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="comments_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Comments $comment): Response
     {
@@ -86,6 +91,7 @@ class CommentsController extends AbstractController
 
     /**
      * @Route("/{id}", name="comments_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Comments $comment): Response
     {
